@@ -1,0 +1,282 @@
+.include "hdr.asm"
+.accu 16
+.index 16
+.16bit
+.define __playSound_locals 0
+.define __playMusic_locals 1
+.define __initSpc_locals 1
+
+.SECTION ".playSoundtext_0x0" SUPERFREE
+
+playSound:
+.ifgr __playSound_locals 0
+tsa
+sec
+sbc #__playSound_locals
+tas
+.endif
+lda 3 + __playSound_locals + 1,s
+asl a
+sta.b tcc__r0
+lda.w #:sfx_pitch
+sta.b tcc__r1h
+lda.w #sfx_pitch + 0
+clc
+adc.b tcc__r0
+sta.b tcc__r1
+sep #$20
+lda #136
+pha
+rep #$20
+lda 4 + __playSound_locals + 1,s
+pha
+lda.b [tcc__r1]
+pha
+jsr.l spcEffect
+tsa
+clc
+adc #5
+tas
+jsr.l spcProcess
+.ifgr __playSound_locals 0
+tsa
+clc
+adc #__playSound_locals
+tas
+.endif
+rtl
+.ENDS
+
+.SECTION ".playMusictext_0x1" SUPERFREE
+
+playMusic:
+.ifgr __playMusic_locals 0
+tsa
+sec
+sbc #__playMusic_locals
+tas
+.endif
+jsr.l spcStop
+lda.w #0
+sep #$20
+lda.l music + 0
+rep #$20
+sta.b tcc__r0
+ldx #1
+sec
+sbc.w #0
+tay
+beq ++
+bvc +
+eor #$8000
++
+bpl +++
+++
+dex
++++
+stx.b tcc__r5
+txa
+bne +
+brl __local_0
++
+lda.w #0
+sep #$20
+lda.l music + 0
+rep #$20
+pha
+jsr.l spcLoad
+pla
+__local_0:
+lda.w #0
+sta.b tcc__r0
+sep #$20
+sta -1 + __playMusic_locals + 1,s
+rep #$20
+__local_3:
+lda.w #0
+sep #$20
+lda -1 + __playMusic_locals + 1,s
+rep #$20
+sta.b tcc__r0
+sec
+sbc.w #6
+bvc +
+eor #$8000
++
+bmi +
+brl __local_1
++
+bra __local_2
+__local_4:
+lda.w #0
+sep #$20
+lda -1 + __playMusic_locals + 1,s
+rep #$20
+sta.b tcc__r0
+sta.b tcc__r1
+lda.b tcc__r0h
+sta.b tcc__r1h
+inc.b tcc__r0
+sep #$20
+lda.b tcc__r0
+sta -1 + __playMusic_locals + 1,s
+rep #$20
+bra __local_3
+__local_2:
+lda.w #0
+sep #$20
+lda -1 + __playMusic_locals + 1,s
+rep #$20
+pha
+jsr.l spcLoadEffect
+pla
+bra __local_4
+__local_1:
+lda.w #0
+sep #$20
+lda.l music + 0
+rep #$20
+sta.b tcc__r0
+ldx #1
+sec
+sbc.w #0
+tay
+beq ++
+bvc +
+eor #$8000
++
+bpl +++
+++
+dex
++++
+stx.b tcc__r5
+txa
+bne +
+brl __local_5
++
+sep #$20
+lda #0
+pha
+rep #$20
+jsr.l spcPlay
+tsa
+clc
+adc #1
+tas
+__local_5:
+.ifgr __playMusic_locals 0
+tsa
+clc
+adc #__playMusic_locals
+tas
+.endif
+rtl
+.ENDS
+
+.SECTION ".initSpctext_0x2" SUPERFREE
+
+initSpc:
+.ifgr __initSpc_locals 0
+tsa
+sec
+sbc #__initSpc_locals
+tas
+.endif
+jsr.l spcBoot
+pea.w :SOUNDBANK__
+pea.w SOUNDBANK__ + 0
+jsr.l spcSetBank
+tsa
+clc
+adc #4
+tas
+pea.w 0
+jsr.l spcLoad
+pla
+jsr.l spcStop
+pea.w 0
+jsr.l spcLoad
+pla
+lda.w #0
+sta.b tcc__r0
+sep #$20
+sta -1 + __initSpc_locals + 1,s
+rep #$20
+__local_8:
+lda.w #0
+sep #$20
+lda -1 + __initSpc_locals + 1,s
+rep #$20
+sta.b tcc__r0
+sec
+sbc.w #6
+bvc +
+eor #$8000
++
+bmi +
+brl __local_6
++
+bra __local_7
+__local_9:
+lda.w #0
+sep #$20
+lda -1 + __initSpc_locals + 1,s
+rep #$20
+sta.b tcc__r0
+sta.b tcc__r1
+lda.b tcc__r0h
+sta.b tcc__r1h
+inc.b tcc__r0
+sep #$20
+lda.b tcc__r0
+sta -1 + __initSpc_locals + 1,s
+rep #$20
+bra __local_8
+__local_7:
+lda.w #0
+sep #$20
+lda -1 + __initSpc_locals + 1,s
+rep #$20
+pha
+jsr.l spcLoadEffect
+pla
+bra __local_9
+__local_6:
+lda.w #1
+sep #$20
+sta.l music + 0
+lda #255
+pha
+rep #$20
+jsr.l spcSetModuleVolume
+tsa
+clc
+adc #1
+tas
+.ifgr __initSpc_locals 0
+tsa
+clc
+adc #__initSpc_locals
+tas
+.endif
+rtl
+.ENDS
+.RAMSECTION "ram{WLA_FILENAME}.data" APPENDTO "globram.data"
+
+music dsb 2
+sfx_pitch dsb 12
+
+.ENDS
+
+.SECTION "{WLA_FILENAME}.data" APPENDTO "glob.data"
+
+.db $0,$0
+.db $1,$0,$1,$0,$2,$0,$2,$0,$2,$0,$2,$0
+.ENDS
+
+.SECTION ".rodata" SUPERFREE
+
+.ENDS
+
+.RAMSECTION ".bss" BANK $7e SLOT 2
+.ENDS

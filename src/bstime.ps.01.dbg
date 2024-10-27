@@ -1,0 +1,1906 @@
+.include "hdr.asm"
+.accu 16
+.index 16
+.16bit
+.define __initBSTime_locals 0
+.define __printDate_locals 4
+.define __printTime_locals 4
+
+.SECTION ".initBSTimetext_0x0" SUPERFREE
+
+initBSTime:
+; sub sp,#__initBSTime_locals
+.ifgr __initBSTime_locals 0
+tsa
+sec
+sbc #__initBSTime_locals
+tas
+.endif
+; load 0
+; type 17 reg 0xf0 extra 0x0
+; ld1 #0,tcc__r0
+lda.w #0
+sta.b tcc__r0
+; store r 0x0 fr 0x53f0 ft 0x11 fc 0x5
+; st1 tcc__r0, [bstime,5]
+sep #$20
+lda.b tcc__r0
+sta.l bstime + 5
+rep #$20
+; load 0
+; type 17 reg 0xf0 extra 0x0
+; ld1 #0,tcc__r0
+lda.w #0
+sta.b tcc__r0
+; store r 0x0 fr 0x53f0 ft 0x11 fc 0x4
+; st1 tcc__r0, [bstime,4]
+sep #$20
+lda.b tcc__r0
+sta.l bstime + 4
+rep #$20
+; load 0
+; type 17 reg 0xf0 extra 0x0
+; ld1 #0,tcc__r0
+lda.w #0
+sta.b tcc__r0
+; store r 0x0 fr 0x53f0 ft 0x11 fc 0x2
+; st1 tcc__r0, [bstime,2]
+sep #$20
+lda.b tcc__r0
+sta.l bstime + 2
+rep #$20
+; load 0
+; type 17 reg 0xf0 extra 0x0
+; ld1 #0,tcc__r0
+lda.w #0
+sta.b tcc__r0
+; store r 0x0 fr 0x53f0 ft 0x11 fc 0x0
+; st1 tcc__r0, [bstime,0]
+sep #$20
+lda.b tcc__r0
+sta.l bstime + 0
+rep #$20
+; load 0
+; type 17 reg 0xf0 extra 0x0
+; ld1 #0,tcc__r0
+lda.w #0
+sta.b tcc__r0
+; store r 0x0 fr 0x53f0 ft 0x11 fc 0x1
+; st1 tcc__r0, [bstime,1]
+sep #$20
+lda.b tcc__r0
+sta.l bstime + 1
+rep #$20
+; gsym_addr t 0 a 1117 ind 1117
+; ERROR no jump found to patch
+; add sp, #__initBSTime_locals
+.ifgr __initBSTime_locals 0
+tsa
+clc
+adc #__initBSTime_locals
+tas
+.endif
+rtl
+.ENDS
+
+.SECTION ".printDatetext_0x1" SUPERFREE
+
+printDate:
+; sub sp,#__printDate_locals
+.ifgr __printDate_locals 0
+tsa
+sec
+sbc #__printDate_locals
+tas
+.endif
+; load 0
+; type 17 reg 0x53f0 extra 0x0
+; ld1 [bstime + 5], tcc__r0
+lda.w #0
+sep #$20
+lda.l bstime + 5
+rep #$20
+sta.b tcc__r0
+; store r 0x0 fr 0x1f2 ft 0x11 fc 0xffffffff
+; st1 tcc__r0, [sp,-1]
+; stack adjust: fc + disp - loc - 256 -254
+sep #$20
+lda.b tcc__r0
+sta -1 + __printDate_locals + 1,s
+rep #$20
+; load 0
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-1],tcc__r0
+; stack adjust: fc + disp - loc - 256 -253
+lda.w #0
+sep #$20
+lda -1 + __printDate_locals + 1,s
+rep #$20
+sta.b tcc__r0
+; gen_opi len 2 op /
+; div #10, tcc__r0
+ldx.b tcc__r0
+lda.w #10
+jsr.l tcc__div
+lda.b tcc__r9
+sta.b tcc__r0
+; store r 0x0 fr 0x1f2 ft 0x11 fc 0xfffffffe
+; st1 tcc__r0, [sp,-2]
+; stack adjust: fc + disp - loc - 256 -254
+sep #$20
+lda.b tcc__r0
+sta -2 + __printDate_locals + 1,s
+rep #$20
+; load 0
+; type 16 reg 0xf0 extra 0x0
+; ld2 #1114,tcc__r0
+lda.w #1114
+sta.b tcc__r0
+; store r 0x0 fr 0x1f2 ft 0x10 fc 0xfffffffc
+; st2 tcc__r0, [sp,-4]
+; stack adjust: fc + disp - loc - 256 -254
+lda.b tcc__r0
+sta -4 + __printDate_locals + 1,s
+; load 0
+; type 4 reg 0x52f0 extra 0x83df2570
+; ld4 #wram7f + 4096, tcc__r0 (type 0x4)
+lda.w #:wram7f
+sta.b tcc__r0h
+lda.w #wram7f + 4096
+sta.b tcc__r0
+; load 1
+; type 16 reg 0x1f2 extra 0xb69fe820
+; ld2 [sp,-4],tcc__r1
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printDate_locals + 1,s
+sta.b tcc__r1
+; gen_opi len 2 op +
+; adc tcc__r1 (0x1), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.b tcc__r1
+sta.b tcc__r0
+; load 1
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-2],tcc__r1
+; stack adjust: fc + disp - loc - 256 -252
+lda.w #0
+sep #$20
+lda -2 + __printDate_locals + 1,s
+rep #$20
+sta.b tcc__r1
+; gen_opi len 2 op |
+; ora tcc__r240 (0xf0), tcc__r1 (0x1) (fr type 0x0 c -2 r type 0x11)
+; length xxy 2 vtop->type 0x0
+; nop
+lda.b tcc__r1
+ora.w #224
+sta.b tcc__r1
+; store r 0x1 fr 0x5100 ft 0x11 fc 0x1000
+; st1 tcc__r1, [tcc__r0,0]
+sep #$20
+lda.b tcc__r1
+sta.b [tcc__r0]
+rep #$20
+; load 0
+; type 4 reg 0x52f0 extra 0x0
+; ld4 #wram7f + 4096, tcc__r0 (type 0x4)
+lda.w #:wram7f
+sta.b tcc__r0h
+lda.w #wram7f + 4096
+sta.b tcc__r0
+; load 1
+; type 16 reg 0x1f2 extra 0xb69fe820
+; ld2 [sp,-4],tcc__r1
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printDate_locals + 1,s
+sta.b tcc__r1
+; gen_opi len 2 op +
+; adc tcc__r1 (0x1), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.b tcc__r1
+sta.b tcc__r0
+; gen_opi len 2 op +
+; adc tcc__r240 (0xf0), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.w #64
+sta.b tcc__r0
+; load 1
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-2],tcc__r1
+; stack adjust: fc + disp - loc - 256 -252
+lda.w #0
+sep #$20
+lda -2 + __printDate_locals + 1,s
+rep #$20
+sta.b tcc__r1
+; gen_opi len 2 op |
+; ora tcc__r240 (0xf0), tcc__r1 (0x1) (fr type 0x0 c -2 r type 0x11)
+; length xxy 2 vtop->type 0x0
+; nop
+lda.b tcc__r1
+ora.w #240
+sta.b tcc__r1
+; store r 0x1 fr 0x5100 ft 0x11 fc 0x1000
+; st1 tcc__r1, [tcc__r0,0]
+sep #$20
+lda.b tcc__r1
+sta.b [tcc__r0]
+rep #$20
+; load 0
+; type 16 reg 0x1f2 extra 0x505
+; ld2 [sp,-4],tcc__r0
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printDate_locals + 1,s
+sta.b tcc__r0
+; gen_opi len 2 op +
+; adc tcc__r240 (0xf0), tcc__r0 (0x0) (fr type 0x10 c -4 r type 0x10)
+; length xxy 2 vtop->type 0x10
+inc.b tcc__r0
+inc.b tcc__r0
+; store r 0x0 fr 0x1f2 ft 0x10 fc 0xfffffffc
+; st2 tcc__r0, [sp,-4]
+; stack adjust: fc + disp - loc - 256 -254
+lda.b tcc__r0
+sta -4 + __printDate_locals + 1,s
+; load 0
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-1],tcc__r0
+; stack adjust: fc + disp - loc - 256 -251
+lda.w #0
+sep #$20
+lda -1 + __printDate_locals + 1,s
+rep #$20
+sta.b tcc__r0
+; gen_opi len 2 op %
+; div #10, tcc__r0
+ldx.b tcc__r0
+lda.w #10
+jsr.l tcc__div
+stx.b tcc__r0
+; store r 0x0 fr 0x51f2 ft 0x11 fc 0xfffffffe
+; st1 tcc__r0, [sp,-2]
+; stack adjust: fc + disp - loc - 256 -252
+sep #$20
+lda.b tcc__r0
+sta -2 + __printDate_locals + 1,s
+rep #$20
+; load 0
+; type 4 reg 0x52f0 extra 0x1
+; ld4 #wram7f + 4096, tcc__r0 (type 0x4)
+lda.w #:wram7f
+sta.b tcc__r0h
+lda.w #wram7f + 4096
+sta.b tcc__r0
+; load 1
+; type 16 reg 0x1f2 extra 0xb69fe820
+; ld2 [sp,-4],tcc__r1
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printDate_locals + 1,s
+sta.b tcc__r1
+; gen_opi len 2 op +
+; adc tcc__r1 (0x1), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.b tcc__r1
+sta.b tcc__r0
+; load 1
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-2],tcc__r1
+; stack adjust: fc + disp - loc - 256 -252
+lda.w #0
+sep #$20
+lda -2 + __printDate_locals + 1,s
+rep #$20
+sta.b tcc__r1
+; gen_opi len 2 op |
+; ora tcc__r240 (0xf0), tcc__r1 (0x1) (fr type 0x0 c -2 r type 0x11)
+; length xxy 2 vtop->type 0x0
+; nop
+lda.b tcc__r1
+ora.w #224
+sta.b tcc__r1
+; store r 0x1 fr 0x5100 ft 0x11 fc 0x1000
+; st1 tcc__r1, [tcc__r0,0]
+sep #$20
+lda.b tcc__r1
+sta.b [tcc__r0]
+rep #$20
+; load 0
+; type 4 reg 0x52f0 extra 0x0
+; ld4 #wram7f + 4096, tcc__r0 (type 0x4)
+lda.w #:wram7f
+sta.b tcc__r0h
+lda.w #wram7f + 4096
+sta.b tcc__r0
+; load 1
+; type 16 reg 0x1f2 extra 0xb69fe820
+; ld2 [sp,-4],tcc__r1
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printDate_locals + 1,s
+sta.b tcc__r1
+; gen_opi len 2 op +
+; adc tcc__r1 (0x1), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.b tcc__r1
+sta.b tcc__r0
+; gen_opi len 2 op +
+; adc tcc__r240 (0xf0), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.w #64
+sta.b tcc__r0
+; load 1
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-2],tcc__r1
+; stack adjust: fc + disp - loc - 256 -252
+lda.w #0
+sep #$20
+lda -2 + __printDate_locals + 1,s
+rep #$20
+sta.b tcc__r1
+; gen_opi len 2 op |
+; ora tcc__r240 (0xf0), tcc__r1 (0x1) (fr type 0x0 c -2 r type 0x11)
+; length xxy 2 vtop->type 0x0
+; nop
+lda.b tcc__r1
+ora.w #240
+sta.b tcc__r1
+; store r 0x1 fr 0x5100 ft 0x11 fc 0x1000
+; st1 tcc__r1, [tcc__r0,0]
+sep #$20
+lda.b tcc__r1
+sta.b [tcc__r0]
+rep #$20
+; load 0
+; type 16 reg 0x1f2 extra 0x505
+; ld2 [sp,-4],tcc__r0
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printDate_locals + 1,s
+sta.b tcc__r0
+; gen_opi len 2 op +
+; adc tcc__r240 (0xf0), tcc__r0 (0x0) (fr type 0x10 c -4 r type 0x10)
+; length xxy 2 vtop->type 0x10
+inc.b tcc__r0
+inc.b tcc__r0
+; store r 0x0 fr 0x1f2 ft 0x10 fc 0xfffffffc
+; st2 tcc__r0, [sp,-4]
+; stack adjust: fc + disp - loc - 256 -254
+lda.b tcc__r0
+sta -4 + __printDate_locals + 1,s
+; load 0
+; type 17 reg 0xf0 extra 0x0
+; ld1 #11,tcc__r0
+lda.w #11
+sta.b tcc__r0
+; store r 0x0 fr 0x51f2 ft 0x11 fc 0xfffffffe
+; st1 tcc__r0, [sp,-2]
+; stack adjust: fc + disp - loc - 256 -252
+sep #$20
+lda.b tcc__r0
+sta -2 + __printDate_locals + 1,s
+rep #$20
+; load 0
+; type 4 reg 0x52f0 extra 0xe33003c6
+; ld4 #wram7f + 4096, tcc__r0 (type 0x4)
+lda.w #:wram7f
+sta.b tcc__r0h
+lda.w #wram7f + 4096
+sta.b tcc__r0
+; load 1
+; type 16 reg 0x1f2 extra 0xb69fe820
+; ld2 [sp,-4],tcc__r1
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printDate_locals + 1,s
+sta.b tcc__r1
+; gen_opi len 2 op +
+; adc tcc__r1 (0x1), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.b tcc__r1
+sta.b tcc__r0
+; load 1
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-2],tcc__r1
+; stack adjust: fc + disp - loc - 256 -252
+lda.w #0
+sep #$20
+lda -2 + __printDate_locals + 1,s
+rep #$20
+sta.b tcc__r1
+; gen_opi len 2 op |
+; ora tcc__r240 (0xf0), tcc__r1 (0x1) (fr type 0x0 c -2 r type 0x11)
+; length xxy 2 vtop->type 0x0
+; nop
+lda.b tcc__r1
+ora.w #224
+sta.b tcc__r1
+; store r 0x1 fr 0x5100 ft 0x11 fc 0x1000
+; st1 tcc__r1, [tcc__r0,0]
+sep #$20
+lda.b tcc__r1
+sta.b [tcc__r0]
+rep #$20
+; load 0
+; type 4 reg 0x52f0 extra 0x0
+; ld4 #wram7f + 4096, tcc__r0 (type 0x4)
+lda.w #:wram7f
+sta.b tcc__r0h
+lda.w #wram7f + 4096
+sta.b tcc__r0
+; load 1
+; type 16 reg 0x1f2 extra 0xb69fe820
+; ld2 [sp,-4],tcc__r1
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printDate_locals + 1,s
+sta.b tcc__r1
+; gen_opi len 2 op +
+; adc tcc__r1 (0x1), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.b tcc__r1
+sta.b tcc__r0
+; gen_opi len 2 op +
+; adc tcc__r240 (0xf0), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.w #64
+sta.b tcc__r0
+; load 1
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-2],tcc__r1
+; stack adjust: fc + disp - loc - 256 -252
+lda.w #0
+sep #$20
+lda -2 + __printDate_locals + 1,s
+rep #$20
+sta.b tcc__r1
+; gen_opi len 2 op |
+; ora tcc__r240 (0xf0), tcc__r1 (0x1) (fr type 0x0 c -2 r type 0x11)
+; length xxy 2 vtop->type 0x0
+; nop
+lda.b tcc__r1
+ora.w #240
+sta.b tcc__r1
+; store r 0x1 fr 0x5100 ft 0x11 fc 0x1000
+; st1 tcc__r1, [tcc__r0,0]
+sep #$20
+lda.b tcc__r1
+sta.b [tcc__r0]
+rep #$20
+; load 0
+; type 16 reg 0x1f2 extra 0x505
+; ld2 [sp,-4],tcc__r0
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printDate_locals + 1,s
+sta.b tcc__r0
+; gen_opi len 2 op +
+; adc tcc__r240 (0xf0), tcc__r0 (0x0) (fr type 0x10 c -4 r type 0x10)
+; length xxy 2 vtop->type 0x10
+inc.b tcc__r0
+inc.b tcc__r0
+; store r 0x0 fr 0x1f2 ft 0x10 fc 0xfffffffc
+; st2 tcc__r0, [sp,-4]
+; stack adjust: fc + disp - loc - 256 -254
+lda.b tcc__r0
+sta -4 + __printDate_locals + 1,s
+; load 0
+; type 17 reg 0x53f0 extra 0x0
+; ld1 [bstime + 4], tcc__r0
+lda.w #0
+sep #$20
+lda.l bstime + 4
+rep #$20
+sta.b tcc__r0
+; store r 0x0 fr 0x51f2 ft 0x11 fc 0xffffffff
+; st1 tcc__r0, [sp,-1]
+; stack adjust: fc + disp - loc - 256 -251
+sep #$20
+lda.b tcc__r0
+sta -1 + __printDate_locals + 1,s
+rep #$20
+; load 0
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-1],tcc__r0
+; stack adjust: fc + disp - loc - 256 -251
+lda.w #0
+sep #$20
+lda -1 + __printDate_locals + 1,s
+rep #$20
+sta.b tcc__r0
+; gen_opi len 2 op /
+; div #10, tcc__r0
+ldx.b tcc__r0
+lda.w #10
+jsr.l tcc__div
+lda.b tcc__r9
+sta.b tcc__r0
+; store r 0x0 fr 0x51f2 ft 0x11 fc 0xfffffffe
+; st1 tcc__r0, [sp,-2]
+; stack adjust: fc + disp - loc - 256 -252
+sep #$20
+lda.b tcc__r0
+sta -2 + __printDate_locals + 1,s
+rep #$20
+; load 0
+; type 4 reg 0x52f0 extra 0x1
+; ld4 #wram7f + 4096, tcc__r0 (type 0x4)
+lda.w #:wram7f
+sta.b tcc__r0h
+lda.w #wram7f + 4096
+sta.b tcc__r0
+; load 1
+; type 16 reg 0x1f2 extra 0xb69fe820
+; ld2 [sp,-4],tcc__r1
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printDate_locals + 1,s
+sta.b tcc__r1
+; gen_opi len 2 op +
+; adc tcc__r1 (0x1), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.b tcc__r1
+sta.b tcc__r0
+; load 1
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-2],tcc__r1
+; stack adjust: fc + disp - loc - 256 -252
+lda.w #0
+sep #$20
+lda -2 + __printDate_locals + 1,s
+rep #$20
+sta.b tcc__r1
+; gen_opi len 2 op |
+; ora tcc__r240 (0xf0), tcc__r1 (0x1) (fr type 0x0 c -2 r type 0x11)
+; length xxy 2 vtop->type 0x0
+; nop
+lda.b tcc__r1
+ora.w #224
+sta.b tcc__r1
+; store r 0x1 fr 0x5100 ft 0x11 fc 0x1000
+; st1 tcc__r1, [tcc__r0,0]
+sep #$20
+lda.b tcc__r1
+sta.b [tcc__r0]
+rep #$20
+; load 0
+; type 4 reg 0x52f0 extra 0x0
+; ld4 #wram7f + 4096, tcc__r0 (type 0x4)
+lda.w #:wram7f
+sta.b tcc__r0h
+lda.w #wram7f + 4096
+sta.b tcc__r0
+; load 1
+; type 16 reg 0x1f2 extra 0xb69fe820
+; ld2 [sp,-4],tcc__r1
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printDate_locals + 1,s
+sta.b tcc__r1
+; gen_opi len 2 op +
+; adc tcc__r1 (0x1), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.b tcc__r1
+sta.b tcc__r0
+; gen_opi len 2 op +
+; adc tcc__r240 (0xf0), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.w #64
+sta.b tcc__r0
+; load 1
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-2],tcc__r1
+; stack adjust: fc + disp - loc - 256 -252
+lda.w #0
+sep #$20
+lda -2 + __printDate_locals + 1,s
+rep #$20
+sta.b tcc__r1
+; gen_opi len 2 op |
+; ora tcc__r240 (0xf0), tcc__r1 (0x1) (fr type 0x0 c -2 r type 0x11)
+; length xxy 2 vtop->type 0x0
+; nop
+lda.b tcc__r1
+ora.w #240
+sta.b tcc__r1
+; store r 0x1 fr 0x5100 ft 0x11 fc 0x1000
+; st1 tcc__r1, [tcc__r0,0]
+sep #$20
+lda.b tcc__r1
+sta.b [tcc__r0]
+rep #$20
+; load 0
+; type 16 reg 0x1f2 extra 0x505
+; ld2 [sp,-4],tcc__r0
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printDate_locals + 1,s
+sta.b tcc__r0
+; gen_opi len 2 op +
+; adc tcc__r240 (0xf0), tcc__r0 (0x0) (fr type 0x10 c -4 r type 0x10)
+; length xxy 2 vtop->type 0x10
+inc.b tcc__r0
+inc.b tcc__r0
+; store r 0x0 fr 0x1f2 ft 0x10 fc 0xfffffffc
+; st2 tcc__r0, [sp,-4]
+; stack adjust: fc + disp - loc - 256 -254
+lda.b tcc__r0
+sta -4 + __printDate_locals + 1,s
+; load 0
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-1],tcc__r0
+; stack adjust: fc + disp - loc - 256 -251
+lda.w #0
+sep #$20
+lda -1 + __printDate_locals + 1,s
+rep #$20
+sta.b tcc__r0
+; gen_opi len 2 op %
+; div #10, tcc__r0
+ldx.b tcc__r0
+lda.w #10
+jsr.l tcc__div
+stx.b tcc__r0
+; store r 0x0 fr 0x51f2 ft 0x11 fc 0xfffffffe
+; st1 tcc__r0, [sp,-2]
+; stack adjust: fc + disp - loc - 256 -252
+sep #$20
+lda.b tcc__r0
+sta -2 + __printDate_locals + 1,s
+rep #$20
+; load 0
+; type 4 reg 0x52f0 extra 0x1
+; ld4 #wram7f + 4096, tcc__r0 (type 0x4)
+lda.w #:wram7f
+sta.b tcc__r0h
+lda.w #wram7f + 4096
+sta.b tcc__r0
+; load 1
+; type 16 reg 0x1f2 extra 0xb69fe820
+; ld2 [sp,-4],tcc__r1
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printDate_locals + 1,s
+sta.b tcc__r1
+; gen_opi len 2 op +
+; adc tcc__r1 (0x1), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.b tcc__r1
+sta.b tcc__r0
+; load 1
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-2],tcc__r1
+; stack adjust: fc + disp - loc - 256 -252
+lda.w #0
+sep #$20
+lda -2 + __printDate_locals + 1,s
+rep #$20
+sta.b tcc__r1
+; gen_opi len 2 op |
+; ora tcc__r240 (0xf0), tcc__r1 (0x1) (fr type 0x0 c -2 r type 0x11)
+; length xxy 2 vtop->type 0x0
+; nop
+lda.b tcc__r1
+ora.w #224
+sta.b tcc__r1
+; store r 0x1 fr 0x5100 ft 0x11 fc 0x1000
+; st1 tcc__r1, [tcc__r0,0]
+sep #$20
+lda.b tcc__r1
+sta.b [tcc__r0]
+rep #$20
+; load 0
+; type 4 reg 0x52f0 extra 0x0
+; ld4 #wram7f + 4096, tcc__r0 (type 0x4)
+lda.w #:wram7f
+sta.b tcc__r0h
+lda.w #wram7f + 4096
+sta.b tcc__r0
+; load 1
+; type 16 reg 0x1f2 extra 0xb69fe820
+; ld2 [sp,-4],tcc__r1
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printDate_locals + 1,s
+sta.b tcc__r1
+; gen_opi len 2 op +
+; adc tcc__r1 (0x1), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.b tcc__r1
+sta.b tcc__r0
+; gen_opi len 2 op +
+; adc tcc__r240 (0xf0), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.w #64
+sta.b tcc__r0
+; load 1
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-2],tcc__r1
+; stack adjust: fc + disp - loc - 256 -252
+lda.w #0
+sep #$20
+lda -2 + __printDate_locals + 1,s
+rep #$20
+sta.b tcc__r1
+; gen_opi len 2 op |
+; ora tcc__r240 (0xf0), tcc__r1 (0x1) (fr type 0x0 c -2 r type 0x11)
+; length xxy 2 vtop->type 0x0
+; nop
+lda.b tcc__r1
+ora.w #240
+sta.b tcc__r1
+; store r 0x1 fr 0x5100 ft 0x11 fc 0x1000
+; st1 tcc__r1, [tcc__r0,0]
+sep #$20
+lda.b tcc__r1
+sta.b [tcc__r0]
+rep #$20
+; load 0
+; type 16 reg 0x1f2 extra 0x505
+; ld2 [sp,-4],tcc__r0
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printDate_locals + 1,s
+sta.b tcc__r0
+; gen_opi len 2 op +
+; adc tcc__r240 (0xf0), tcc__r0 (0x0) (fr type 0x10 c -4 r type 0x10)
+; length xxy 2 vtop->type 0x10
+inc.b tcc__r0
+inc.b tcc__r0
+; store r 0x0 fr 0x1f2 ft 0x10 fc 0xfffffffc
+; st2 tcc__r0, [sp,-4]
+; stack adjust: fc + disp - loc - 256 -254
+lda.b tcc__r0
+sta -4 + __printDate_locals + 1,s
+; gsym_addr t 0 a 16828 ind 16828
+; ERROR no jump found to patch
+; add sp, #__printDate_locals
+.ifgr __printDate_locals 0
+tsa
+clc
+adc #__printDate_locals
+tas
+.endif
+rtl
+.ENDS
+
+.SECTION ".printTimetext_0x2" SUPERFREE
+
+printTime:
+; sub sp,#__printTime_locals
+.ifgr __printTime_locals 0
+tsa
+sec
+sbc #__printTime_locals
+tas
+.endif
+; load 0
+; type 17 reg 0x53f0 extra 0x0
+; ld1 [bstime + 2], tcc__r0
+lda.w #0
+sep #$20
+lda.l bstime + 2
+rep #$20
+sta.b tcc__r0
+; store r 0x0 fr 0x1f2 ft 0x11 fc 0xffffffff
+; st1 tcc__r0, [sp,-1]
+; stack adjust: fc + disp - loc - 256 -254
+sep #$20
+lda.b tcc__r0
+sta -1 + __printTime_locals + 1,s
+rep #$20
+; load 0
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-1],tcc__r0
+; stack adjust: fc + disp - loc - 256 -253
+lda.w #0
+sep #$20
+lda -1 + __printTime_locals + 1,s
+rep #$20
+sta.b tcc__r0
+; gen_opi len 2 op /
+; div #10, tcc__r0
+ldx.b tcc__r0
+lda.w #10
+jsr.l tcc__div
+lda.b tcc__r9
+sta.b tcc__r0
+; store r 0x0 fr 0x1f2 ft 0x11 fc 0xfffffffe
+; st1 tcc__r0, [sp,-2]
+; stack adjust: fc + disp - loc - 256 -254
+sep #$20
+lda.b tcc__r0
+sta -2 + __printTime_locals + 1,s
+rep #$20
+; load 0
+; type 16 reg 0xf0 extra 0x0
+; ld2 #1126,tcc__r0
+lda.w #1126
+sta.b tcc__r0
+; store r 0x0 fr 0x1f2 ft 0x10 fc 0xfffffffc
+; st2 tcc__r0, [sp,-4]
+; stack adjust: fc + disp - loc - 256 -254
+lda.b tcc__r0
+sta -4 + __printTime_locals + 1,s
+; load 0
+; type 4 reg 0x52f0 extra 0x83df26f0
+; ld4 #wram7f + 4096, tcc__r0 (type 0x4)
+lda.w #:wram7f
+sta.b tcc__r0h
+lda.w #wram7f + 4096
+sta.b tcc__r0
+; load 1
+; type 16 reg 0x1f2 extra 0xb69fe820
+; ld2 [sp,-4],tcc__r1
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printTime_locals + 1,s
+sta.b tcc__r1
+; gen_opi len 2 op +
+; adc tcc__r1 (0x1), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.b tcc__r1
+sta.b tcc__r0
+; load 1
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-2],tcc__r1
+; stack adjust: fc + disp - loc - 256 -252
+lda.w #0
+sep #$20
+lda -2 + __printTime_locals + 1,s
+rep #$20
+sta.b tcc__r1
+; gen_opi len 2 op |
+; ora tcc__r240 (0xf0), tcc__r1 (0x1) (fr type 0x0 c -2 r type 0x11)
+; length xxy 2 vtop->type 0x0
+; nop
+lda.b tcc__r1
+ora.w #224
+sta.b tcc__r1
+; store r 0x1 fr 0x5100 ft 0x11 fc 0x1000
+; st1 tcc__r1, [tcc__r0,0]
+sep #$20
+lda.b tcc__r1
+sta.b [tcc__r0]
+rep #$20
+; load 0
+; type 4 reg 0x52f0 extra 0x0
+; ld4 #wram7f + 4096, tcc__r0 (type 0x4)
+lda.w #:wram7f
+sta.b tcc__r0h
+lda.w #wram7f + 4096
+sta.b tcc__r0
+; load 1
+; type 16 reg 0x1f2 extra 0xb69fe820
+; ld2 [sp,-4],tcc__r1
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printTime_locals + 1,s
+sta.b tcc__r1
+; gen_opi len 2 op +
+; adc tcc__r1 (0x1), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.b tcc__r1
+sta.b tcc__r0
+; gen_opi len 2 op +
+; adc tcc__r240 (0xf0), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.w #64
+sta.b tcc__r0
+; load 1
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-2],tcc__r1
+; stack adjust: fc + disp - loc - 256 -252
+lda.w #0
+sep #$20
+lda -2 + __printTime_locals + 1,s
+rep #$20
+sta.b tcc__r1
+; gen_opi len 2 op |
+; ora tcc__r240 (0xf0), tcc__r1 (0x1) (fr type 0x0 c -2 r type 0x11)
+; length xxy 2 vtop->type 0x0
+; nop
+lda.b tcc__r1
+ora.w #240
+sta.b tcc__r1
+; store r 0x1 fr 0x5100 ft 0x11 fc 0x1000
+; st1 tcc__r1, [tcc__r0,0]
+sep #$20
+lda.b tcc__r1
+sta.b [tcc__r0]
+rep #$20
+; load 0
+; type 16 reg 0x1f2 extra 0x505
+; ld2 [sp,-4],tcc__r0
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printTime_locals + 1,s
+sta.b tcc__r0
+; gen_opi len 2 op +
+; adc tcc__r240 (0xf0), tcc__r0 (0x0) (fr type 0x10 c -4 r type 0x10)
+; length xxy 2 vtop->type 0x10
+inc.b tcc__r0
+inc.b tcc__r0
+; store r 0x0 fr 0x1f2 ft 0x10 fc 0xfffffffc
+; st2 tcc__r0, [sp,-4]
+; stack adjust: fc + disp - loc - 256 -254
+lda.b tcc__r0
+sta -4 + __printTime_locals + 1,s
+; load 0
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-1],tcc__r0
+; stack adjust: fc + disp - loc - 256 -251
+lda.w #0
+sep #$20
+lda -1 + __printTime_locals + 1,s
+rep #$20
+sta.b tcc__r0
+; gen_opi len 2 op %
+; div #10, tcc__r0
+ldx.b tcc__r0
+lda.w #10
+jsr.l tcc__div
+stx.b tcc__r0
+; store r 0x0 fr 0x51f2 ft 0x11 fc 0xfffffffe
+; st1 tcc__r0, [sp,-2]
+; stack adjust: fc + disp - loc - 256 -252
+sep #$20
+lda.b tcc__r0
+sta -2 + __printTime_locals + 1,s
+rep #$20
+; load 0
+; type 4 reg 0x52f0 extra 0x1
+; ld4 #wram7f + 4096, tcc__r0 (type 0x4)
+lda.w #:wram7f
+sta.b tcc__r0h
+lda.w #wram7f + 4096
+sta.b tcc__r0
+; load 1
+; type 16 reg 0x1f2 extra 0xb69fe820
+; ld2 [sp,-4],tcc__r1
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printTime_locals + 1,s
+sta.b tcc__r1
+; gen_opi len 2 op +
+; adc tcc__r1 (0x1), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.b tcc__r1
+sta.b tcc__r0
+; load 1
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-2],tcc__r1
+; stack adjust: fc + disp - loc - 256 -252
+lda.w #0
+sep #$20
+lda -2 + __printTime_locals + 1,s
+rep #$20
+sta.b tcc__r1
+; gen_opi len 2 op |
+; ora tcc__r240 (0xf0), tcc__r1 (0x1) (fr type 0x0 c -2 r type 0x11)
+; length xxy 2 vtop->type 0x0
+; nop
+lda.b tcc__r1
+ora.w #224
+sta.b tcc__r1
+; store r 0x1 fr 0x5100 ft 0x11 fc 0x1000
+; st1 tcc__r1, [tcc__r0,0]
+sep #$20
+lda.b tcc__r1
+sta.b [tcc__r0]
+rep #$20
+; load 0
+; type 4 reg 0x52f0 extra 0x0
+; ld4 #wram7f + 4096, tcc__r0 (type 0x4)
+lda.w #:wram7f
+sta.b tcc__r0h
+lda.w #wram7f + 4096
+sta.b tcc__r0
+; load 1
+; type 16 reg 0x1f2 extra 0xb69fe820
+; ld2 [sp,-4],tcc__r1
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printTime_locals + 1,s
+sta.b tcc__r1
+; gen_opi len 2 op +
+; adc tcc__r1 (0x1), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.b tcc__r1
+sta.b tcc__r0
+; gen_opi len 2 op +
+; adc tcc__r240 (0xf0), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.w #64
+sta.b tcc__r0
+; load 1
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-2],tcc__r1
+; stack adjust: fc + disp - loc - 256 -252
+lda.w #0
+sep #$20
+lda -2 + __printTime_locals + 1,s
+rep #$20
+sta.b tcc__r1
+; gen_opi len 2 op |
+; ora tcc__r240 (0xf0), tcc__r1 (0x1) (fr type 0x0 c -2 r type 0x11)
+; length xxy 2 vtop->type 0x0
+; nop
+lda.b tcc__r1
+ora.w #240
+sta.b tcc__r1
+; store r 0x1 fr 0x5100 ft 0x11 fc 0x1000
+; st1 tcc__r1, [tcc__r0,0]
+sep #$20
+lda.b tcc__r1
+sta.b [tcc__r0]
+rep #$20
+; load 0
+; type 16 reg 0x1f2 extra 0x505
+; ld2 [sp,-4],tcc__r0
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printTime_locals + 1,s
+sta.b tcc__r0
+; gen_opi len 2 op +
+; adc tcc__r240 (0xf0), tcc__r0 (0x0) (fr type 0x10 c -4 r type 0x10)
+; length xxy 2 vtop->type 0x10
+inc.b tcc__r0
+inc.b tcc__r0
+; store r 0x0 fr 0x1f2 ft 0x10 fc 0xfffffffc
+; st2 tcc__r0, [sp,-4]
+; stack adjust: fc + disp - loc - 256 -254
+lda.b tcc__r0
+sta -4 + __printTime_locals + 1,s
+; load 0
+; type 17 reg 0xf0 extra 0x0
+; ld1 #10,tcc__r0
+lda.w #10
+sta.b tcc__r0
+; store r 0x0 fr 0x51f2 ft 0x11 fc 0xfffffffe
+; st1 tcc__r0, [sp,-2]
+; stack adjust: fc + disp - loc - 256 -252
+sep #$20
+lda.b tcc__r0
+sta -2 + __printTime_locals + 1,s
+rep #$20
+; load 0
+; type 4 reg 0x52f0 extra 0xe33003c6
+; ld4 #wram7f + 4096, tcc__r0 (type 0x4)
+lda.w #:wram7f
+sta.b tcc__r0h
+lda.w #wram7f + 4096
+sta.b tcc__r0
+; load 1
+; type 16 reg 0x1f2 extra 0xb69fe820
+; ld2 [sp,-4],tcc__r1
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printTime_locals + 1,s
+sta.b tcc__r1
+; gen_opi len 2 op +
+; adc tcc__r1 (0x1), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.b tcc__r1
+sta.b tcc__r0
+; load 1
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-2],tcc__r1
+; stack adjust: fc + disp - loc - 256 -252
+lda.w #0
+sep #$20
+lda -2 + __printTime_locals + 1,s
+rep #$20
+sta.b tcc__r1
+; gen_opi len 2 op |
+; ora tcc__r240 (0xf0), tcc__r1 (0x1) (fr type 0x0 c -2 r type 0x11)
+; length xxy 2 vtop->type 0x0
+; nop
+lda.b tcc__r1
+ora.w #224
+sta.b tcc__r1
+; store r 0x1 fr 0x5100 ft 0x11 fc 0x1000
+; st1 tcc__r1, [tcc__r0,0]
+sep #$20
+lda.b tcc__r1
+sta.b [tcc__r0]
+rep #$20
+; load 0
+; type 4 reg 0x52f0 extra 0x0
+; ld4 #wram7f + 4096, tcc__r0 (type 0x4)
+lda.w #:wram7f
+sta.b tcc__r0h
+lda.w #wram7f + 4096
+sta.b tcc__r0
+; load 1
+; type 16 reg 0x1f2 extra 0xb69fe820
+; ld2 [sp,-4],tcc__r1
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printTime_locals + 1,s
+sta.b tcc__r1
+; gen_opi len 2 op +
+; adc tcc__r1 (0x1), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.b tcc__r1
+sta.b tcc__r0
+; gen_opi len 2 op +
+; adc tcc__r240 (0xf0), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.w #64
+sta.b tcc__r0
+; load 1
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-2],tcc__r1
+; stack adjust: fc + disp - loc - 256 -252
+lda.w #0
+sep #$20
+lda -2 + __printTime_locals + 1,s
+rep #$20
+sta.b tcc__r1
+; gen_opi len 2 op |
+; ora tcc__r240 (0xf0), tcc__r1 (0x1) (fr type 0x0 c -2 r type 0x11)
+; length xxy 2 vtop->type 0x0
+; nop
+lda.b tcc__r1
+ora.w #240
+sta.b tcc__r1
+; store r 0x1 fr 0x5100 ft 0x11 fc 0x1000
+; st1 tcc__r1, [tcc__r0,0]
+sep #$20
+lda.b tcc__r1
+sta.b [tcc__r0]
+rep #$20
+; load 0
+; type 16 reg 0x1f2 extra 0x505
+; ld2 [sp,-4],tcc__r0
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printTime_locals + 1,s
+sta.b tcc__r0
+; gen_opi len 2 op +
+; adc tcc__r240 (0xf0), tcc__r0 (0x0) (fr type 0x10 c -4 r type 0x10)
+; length xxy 2 vtop->type 0x10
+inc.b tcc__r0
+inc.b tcc__r0
+; store r 0x0 fr 0x1f2 ft 0x10 fc 0xfffffffc
+; st2 tcc__r0, [sp,-4]
+; stack adjust: fc + disp - loc - 256 -254
+lda.b tcc__r0
+sta -4 + __printTime_locals + 1,s
+; load 0
+; type 17 reg 0x53f0 extra 0x0
+; ld1 [bstime + 1], tcc__r0
+lda.w #0
+sep #$20
+lda.l bstime + 1
+rep #$20
+sta.b tcc__r0
+; store r 0x0 fr 0x51f2 ft 0x11 fc 0xffffffff
+; st1 tcc__r0, [sp,-1]
+; stack adjust: fc + disp - loc - 256 -251
+sep #$20
+lda.b tcc__r0
+sta -1 + __printTime_locals + 1,s
+rep #$20
+; load 0
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-1],tcc__r0
+; stack adjust: fc + disp - loc - 256 -251
+lda.w #0
+sep #$20
+lda -1 + __printTime_locals + 1,s
+rep #$20
+sta.b tcc__r0
+; gen_opi len 2 op /
+; div #10, tcc__r0
+ldx.b tcc__r0
+lda.w #10
+jsr.l tcc__div
+lda.b tcc__r9
+sta.b tcc__r0
+; store r 0x0 fr 0x51f2 ft 0x11 fc 0xfffffffe
+; st1 tcc__r0, [sp,-2]
+; stack adjust: fc + disp - loc - 256 -252
+sep #$20
+lda.b tcc__r0
+sta -2 + __printTime_locals + 1,s
+rep #$20
+; load 0
+; type 4 reg 0x52f0 extra 0x1
+; ld4 #wram7f + 4096, tcc__r0 (type 0x4)
+lda.w #:wram7f
+sta.b tcc__r0h
+lda.w #wram7f + 4096
+sta.b tcc__r0
+; load 1
+; type 16 reg 0x1f2 extra 0xb69fe820
+; ld2 [sp,-4],tcc__r1
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printTime_locals + 1,s
+sta.b tcc__r1
+; gen_opi len 2 op +
+; adc tcc__r1 (0x1), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.b tcc__r1
+sta.b tcc__r0
+; load 1
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-2],tcc__r1
+; stack adjust: fc + disp - loc - 256 -252
+lda.w #0
+sep #$20
+lda -2 + __printTime_locals + 1,s
+rep #$20
+sta.b tcc__r1
+; gen_opi len 2 op |
+; ora tcc__r240 (0xf0), tcc__r1 (0x1) (fr type 0x0 c -2 r type 0x11)
+; length xxy 2 vtop->type 0x0
+; nop
+lda.b tcc__r1
+ora.w #224
+sta.b tcc__r1
+; store r 0x1 fr 0x5100 ft 0x11 fc 0x1000
+; st1 tcc__r1, [tcc__r0,0]
+sep #$20
+lda.b tcc__r1
+sta.b [tcc__r0]
+rep #$20
+; load 0
+; type 4 reg 0x52f0 extra 0x0
+; ld4 #wram7f + 4096, tcc__r0 (type 0x4)
+lda.w #:wram7f
+sta.b tcc__r0h
+lda.w #wram7f + 4096
+sta.b tcc__r0
+; load 1
+; type 16 reg 0x1f2 extra 0xb69fe820
+; ld2 [sp,-4],tcc__r1
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printTime_locals + 1,s
+sta.b tcc__r1
+; gen_opi len 2 op +
+; adc tcc__r1 (0x1), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.b tcc__r1
+sta.b tcc__r0
+; gen_opi len 2 op +
+; adc tcc__r240 (0xf0), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.w #64
+sta.b tcc__r0
+; load 1
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-2],tcc__r1
+; stack adjust: fc + disp - loc - 256 -252
+lda.w #0
+sep #$20
+lda -2 + __printTime_locals + 1,s
+rep #$20
+sta.b tcc__r1
+; gen_opi len 2 op |
+; ora tcc__r240 (0xf0), tcc__r1 (0x1) (fr type 0x0 c -2 r type 0x11)
+; length xxy 2 vtop->type 0x0
+; nop
+lda.b tcc__r1
+ora.w #240
+sta.b tcc__r1
+; store r 0x1 fr 0x5100 ft 0x11 fc 0x1000
+; st1 tcc__r1, [tcc__r0,0]
+sep #$20
+lda.b tcc__r1
+sta.b [tcc__r0]
+rep #$20
+; load 0
+; type 16 reg 0x1f2 extra 0x505
+; ld2 [sp,-4],tcc__r0
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printTime_locals + 1,s
+sta.b tcc__r0
+; gen_opi len 2 op +
+; adc tcc__r240 (0xf0), tcc__r0 (0x0) (fr type 0x10 c -4 r type 0x10)
+; length xxy 2 vtop->type 0x10
+inc.b tcc__r0
+inc.b tcc__r0
+; store r 0x0 fr 0x1f2 ft 0x10 fc 0xfffffffc
+; st2 tcc__r0, [sp,-4]
+; stack adjust: fc + disp - loc - 256 -254
+lda.b tcc__r0
+sta -4 + __printTime_locals + 1,s
+; load 0
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-1],tcc__r0
+; stack adjust: fc + disp - loc - 256 -251
+lda.w #0
+sep #$20
+lda -1 + __printTime_locals + 1,s
+rep #$20
+sta.b tcc__r0
+; gen_opi len 2 op %
+; div #10, tcc__r0
+ldx.b tcc__r0
+lda.w #10
+jsr.l tcc__div
+stx.b tcc__r0
+; store r 0x0 fr 0x51f2 ft 0x11 fc 0xfffffffe
+; st1 tcc__r0, [sp,-2]
+; stack adjust: fc + disp - loc - 256 -252
+sep #$20
+lda.b tcc__r0
+sta -2 + __printTime_locals + 1,s
+rep #$20
+; load 0
+; type 4 reg 0x52f0 extra 0x1
+; ld4 #wram7f + 4096, tcc__r0 (type 0x4)
+lda.w #:wram7f
+sta.b tcc__r0h
+lda.w #wram7f + 4096
+sta.b tcc__r0
+; load 1
+; type 16 reg 0x1f2 extra 0xb69fe820
+; ld2 [sp,-4],tcc__r1
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printTime_locals + 1,s
+sta.b tcc__r1
+; gen_opi len 2 op +
+; adc tcc__r1 (0x1), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.b tcc__r1
+sta.b tcc__r0
+; load 1
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-2],tcc__r1
+; stack adjust: fc + disp - loc - 256 -252
+lda.w #0
+sep #$20
+lda -2 + __printTime_locals + 1,s
+rep #$20
+sta.b tcc__r1
+; gen_opi len 2 op |
+; ora tcc__r240 (0xf0), tcc__r1 (0x1) (fr type 0x0 c -2 r type 0x11)
+; length xxy 2 vtop->type 0x0
+; nop
+lda.b tcc__r1
+ora.w #224
+sta.b tcc__r1
+; store r 0x1 fr 0x5100 ft 0x11 fc 0x1000
+; st1 tcc__r1, [tcc__r0,0]
+sep #$20
+lda.b tcc__r1
+sta.b [tcc__r0]
+rep #$20
+; load 0
+; type 4 reg 0x52f0 extra 0x0
+; ld4 #wram7f + 4096, tcc__r0 (type 0x4)
+lda.w #:wram7f
+sta.b tcc__r0h
+lda.w #wram7f + 4096
+sta.b tcc__r0
+; load 1
+; type 16 reg 0x1f2 extra 0xb69fe820
+; ld2 [sp,-4],tcc__r1
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printTime_locals + 1,s
+sta.b tcc__r1
+; gen_opi len 2 op +
+; adc tcc__r1 (0x1), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.b tcc__r1
+sta.b tcc__r0
+; gen_opi len 2 op +
+; adc tcc__r240 (0xf0), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.w #64
+sta.b tcc__r0
+; load 1
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-2],tcc__r1
+; stack adjust: fc + disp - loc - 256 -252
+lda.w #0
+sep #$20
+lda -2 + __printTime_locals + 1,s
+rep #$20
+sta.b tcc__r1
+; gen_opi len 2 op |
+; ora tcc__r240 (0xf0), tcc__r1 (0x1) (fr type 0x0 c -2 r type 0x11)
+; length xxy 2 vtop->type 0x0
+; nop
+lda.b tcc__r1
+ora.w #240
+sta.b tcc__r1
+; store r 0x1 fr 0x5100 ft 0x11 fc 0x1000
+; st1 tcc__r1, [tcc__r0,0]
+sep #$20
+lda.b tcc__r1
+sta.b [tcc__r0]
+rep #$20
+; load 0
+; type 16 reg 0x1f2 extra 0x505
+; ld2 [sp,-4],tcc__r0
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printTime_locals + 1,s
+sta.b tcc__r0
+; gen_opi len 2 op +
+; adc tcc__r240 (0xf0), tcc__r0 (0x0) (fr type 0x10 c -4 r type 0x10)
+; length xxy 2 vtop->type 0x10
+inc.b tcc__r0
+inc.b tcc__r0
+; store r 0x0 fr 0x1f2 ft 0x10 fc 0xfffffffc
+; st2 tcc__r0, [sp,-4]
+; stack adjust: fc + disp - loc - 256 -254
+lda.b tcc__r0
+sta -4 + __printTime_locals + 1,s
+; load 0
+; type 17 reg 0xf0 extra 0x0
+; ld1 #10,tcc__r0
+lda.w #10
+sta.b tcc__r0
+; store r 0x0 fr 0x51f2 ft 0x11 fc 0xfffffffe
+; st1 tcc__r0, [sp,-2]
+; stack adjust: fc + disp - loc - 256 -252
+sep #$20
+lda.b tcc__r0
+sta -2 + __printTime_locals + 1,s
+rep #$20
+; load 0
+; type 4 reg 0x52f0 extra 0xe33003c6
+; ld4 #wram7f + 4096, tcc__r0 (type 0x4)
+lda.w #:wram7f
+sta.b tcc__r0h
+lda.w #wram7f + 4096
+sta.b tcc__r0
+; load 1
+; type 16 reg 0x1f2 extra 0xb69fe820
+; ld2 [sp,-4],tcc__r1
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printTime_locals + 1,s
+sta.b tcc__r1
+; gen_opi len 2 op +
+; adc tcc__r1 (0x1), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.b tcc__r1
+sta.b tcc__r0
+; load 1
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-2],tcc__r1
+; stack adjust: fc + disp - loc - 256 -252
+lda.w #0
+sep #$20
+lda -2 + __printTime_locals + 1,s
+rep #$20
+sta.b tcc__r1
+; gen_opi len 2 op |
+; ora tcc__r240 (0xf0), tcc__r1 (0x1) (fr type 0x0 c -2 r type 0x11)
+; length xxy 2 vtop->type 0x0
+; nop
+lda.b tcc__r1
+ora.w #224
+sta.b tcc__r1
+; store r 0x1 fr 0x5100 ft 0x11 fc 0x1000
+; st1 tcc__r1, [tcc__r0,0]
+sep #$20
+lda.b tcc__r1
+sta.b [tcc__r0]
+rep #$20
+; load 0
+; type 4 reg 0x52f0 extra 0x0
+; ld4 #wram7f + 4096, tcc__r0 (type 0x4)
+lda.w #:wram7f
+sta.b tcc__r0h
+lda.w #wram7f + 4096
+sta.b tcc__r0
+; load 1
+; type 16 reg 0x1f2 extra 0xb69fe820
+; ld2 [sp,-4],tcc__r1
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printTime_locals + 1,s
+sta.b tcc__r1
+; gen_opi len 2 op +
+; adc tcc__r1 (0x1), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.b tcc__r1
+sta.b tcc__r0
+; gen_opi len 2 op +
+; adc tcc__r240 (0xf0), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.w #64
+sta.b tcc__r0
+; load 1
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-2],tcc__r1
+; stack adjust: fc + disp - loc - 256 -252
+lda.w #0
+sep #$20
+lda -2 + __printTime_locals + 1,s
+rep #$20
+sta.b tcc__r1
+; gen_opi len 2 op |
+; ora tcc__r240 (0xf0), tcc__r1 (0x1) (fr type 0x0 c -2 r type 0x11)
+; length xxy 2 vtop->type 0x0
+; nop
+lda.b tcc__r1
+ora.w #240
+sta.b tcc__r1
+; store r 0x1 fr 0x5100 ft 0x11 fc 0x1000
+; st1 tcc__r1, [tcc__r0,0]
+sep #$20
+lda.b tcc__r1
+sta.b [tcc__r0]
+rep #$20
+; load 0
+; type 16 reg 0x1f2 extra 0x505
+; ld2 [sp,-4],tcc__r0
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printTime_locals + 1,s
+sta.b tcc__r0
+; gen_opi len 2 op +
+; adc tcc__r240 (0xf0), tcc__r0 (0x0) (fr type 0x10 c -4 r type 0x10)
+; length xxy 2 vtop->type 0x10
+inc.b tcc__r0
+inc.b tcc__r0
+; store r 0x0 fr 0x1f2 ft 0x10 fc 0xfffffffc
+; st2 tcc__r0, [sp,-4]
+; stack adjust: fc + disp - loc - 256 -254
+lda.b tcc__r0
+sta -4 + __printTime_locals + 1,s
+; load 0
+; type 17 reg 0x53f0 extra 0x0
+; ld1 [bstime + 0], tcc__r0
+lda.w #0
+sep #$20
+lda.l bstime + 0
+rep #$20
+sta.b tcc__r0
+; store r 0x0 fr 0x51f2 ft 0x11 fc 0xffffffff
+; st1 tcc__r0, [sp,-1]
+; stack adjust: fc + disp - loc - 256 -251
+sep #$20
+lda.b tcc__r0
+sta -1 + __printTime_locals + 1,s
+rep #$20
+; load 0
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-1],tcc__r0
+; stack adjust: fc + disp - loc - 256 -251
+lda.w #0
+sep #$20
+lda -1 + __printTime_locals + 1,s
+rep #$20
+sta.b tcc__r0
+; gen_opi len 2 op /
+; div #10, tcc__r0
+ldx.b tcc__r0
+lda.w #10
+jsr.l tcc__div
+lda.b tcc__r9
+sta.b tcc__r0
+; store r 0x0 fr 0x51f2 ft 0x11 fc 0xfffffffe
+; st1 tcc__r0, [sp,-2]
+; stack adjust: fc + disp - loc - 256 -252
+sep #$20
+lda.b tcc__r0
+sta -2 + __printTime_locals + 1,s
+rep #$20
+; load 0
+; type 4 reg 0x52f0 extra 0x1
+; ld4 #wram7f + 4096, tcc__r0 (type 0x4)
+lda.w #:wram7f
+sta.b tcc__r0h
+lda.w #wram7f + 4096
+sta.b tcc__r0
+; load 1
+; type 16 reg 0x1f2 extra 0xb69fe820
+; ld2 [sp,-4],tcc__r1
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printTime_locals + 1,s
+sta.b tcc__r1
+; gen_opi len 2 op +
+; adc tcc__r1 (0x1), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.b tcc__r1
+sta.b tcc__r0
+; load 1
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-2],tcc__r1
+; stack adjust: fc + disp - loc - 256 -252
+lda.w #0
+sep #$20
+lda -2 + __printTime_locals + 1,s
+rep #$20
+sta.b tcc__r1
+; gen_opi len 2 op |
+; ora tcc__r240 (0xf0), tcc__r1 (0x1) (fr type 0x0 c -2 r type 0x11)
+; length xxy 2 vtop->type 0x0
+; nop
+lda.b tcc__r1
+ora.w #224
+sta.b tcc__r1
+; store r 0x1 fr 0x5100 ft 0x11 fc 0x1000
+; st1 tcc__r1, [tcc__r0,0]
+sep #$20
+lda.b tcc__r1
+sta.b [tcc__r0]
+rep #$20
+; load 0
+; type 4 reg 0x52f0 extra 0x0
+; ld4 #wram7f + 4096, tcc__r0 (type 0x4)
+lda.w #:wram7f
+sta.b tcc__r0h
+lda.w #wram7f + 4096
+sta.b tcc__r0
+; load 1
+; type 16 reg 0x1f2 extra 0xb69fe820
+; ld2 [sp,-4],tcc__r1
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printTime_locals + 1,s
+sta.b tcc__r1
+; gen_opi len 2 op +
+; adc tcc__r1 (0x1), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.b tcc__r1
+sta.b tcc__r0
+; gen_opi len 2 op +
+; adc tcc__r240 (0xf0), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.w #64
+sta.b tcc__r0
+; load 1
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-2],tcc__r1
+; stack adjust: fc + disp - loc - 256 -252
+lda.w #0
+sep #$20
+lda -2 + __printTime_locals + 1,s
+rep #$20
+sta.b tcc__r1
+; gen_opi len 2 op |
+; ora tcc__r240 (0xf0), tcc__r1 (0x1) (fr type 0x0 c -2 r type 0x11)
+; length xxy 2 vtop->type 0x0
+; nop
+lda.b tcc__r1
+ora.w #240
+sta.b tcc__r1
+; store r 0x1 fr 0x5100 ft 0x11 fc 0x1000
+; st1 tcc__r1, [tcc__r0,0]
+sep #$20
+lda.b tcc__r1
+sta.b [tcc__r0]
+rep #$20
+; load 0
+; type 16 reg 0x1f2 extra 0x505
+; ld2 [sp,-4],tcc__r0
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printTime_locals + 1,s
+sta.b tcc__r0
+; gen_opi len 2 op +
+; adc tcc__r240 (0xf0), tcc__r0 (0x0) (fr type 0x10 c -4 r type 0x10)
+; length xxy 2 vtop->type 0x10
+inc.b tcc__r0
+inc.b tcc__r0
+; store r 0x0 fr 0x1f2 ft 0x10 fc 0xfffffffc
+; st2 tcc__r0, [sp,-4]
+; stack adjust: fc + disp - loc - 256 -254
+lda.b tcc__r0
+sta -4 + __printTime_locals + 1,s
+; load 0
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-1],tcc__r0
+; stack adjust: fc + disp - loc - 256 -251
+lda.w #0
+sep #$20
+lda -1 + __printTime_locals + 1,s
+rep #$20
+sta.b tcc__r0
+; gen_opi len 2 op %
+; div #10, tcc__r0
+ldx.b tcc__r0
+lda.w #10
+jsr.l tcc__div
+stx.b tcc__r0
+; store r 0x0 fr 0x51f2 ft 0x11 fc 0xfffffffe
+; st1 tcc__r0, [sp,-2]
+; stack adjust: fc + disp - loc - 256 -252
+sep #$20
+lda.b tcc__r0
+sta -2 + __printTime_locals + 1,s
+rep #$20
+; load 0
+; type 4 reg 0x52f0 extra 0x1
+; ld4 #wram7f + 4096, tcc__r0 (type 0x4)
+lda.w #:wram7f
+sta.b tcc__r0h
+lda.w #wram7f + 4096
+sta.b tcc__r0
+; load 1
+; type 16 reg 0x1f2 extra 0xb69fe820
+; ld2 [sp,-4],tcc__r1
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printTime_locals + 1,s
+sta.b tcc__r1
+; gen_opi len 2 op +
+; adc tcc__r1 (0x1), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.b tcc__r1
+sta.b tcc__r0
+; load 1
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-2],tcc__r1
+; stack adjust: fc + disp - loc - 256 -252
+lda.w #0
+sep #$20
+lda -2 + __printTime_locals + 1,s
+rep #$20
+sta.b tcc__r1
+; gen_opi len 2 op |
+; ora tcc__r240 (0xf0), tcc__r1 (0x1) (fr type 0x0 c -2 r type 0x11)
+; length xxy 2 vtop->type 0x0
+; nop
+lda.b tcc__r1
+ora.w #224
+sta.b tcc__r1
+; store r 0x1 fr 0x5100 ft 0x11 fc 0x1000
+; st1 tcc__r1, [tcc__r0,0]
+sep #$20
+lda.b tcc__r1
+sta.b [tcc__r0]
+rep #$20
+; load 0
+; type 4 reg 0x52f0 extra 0x0
+; ld4 #wram7f + 4096, tcc__r0 (type 0x4)
+lda.w #:wram7f
+sta.b tcc__r0h
+lda.w #wram7f + 4096
+sta.b tcc__r0
+; load 1
+; type 16 reg 0x1f2 extra 0xb69fe820
+; ld2 [sp,-4],tcc__r1
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printTime_locals + 1,s
+sta.b tcc__r1
+; gen_opi len 2 op +
+; adc tcc__r1 (0x1), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.b tcc__r1
+sta.b tcc__r0
+; gen_opi len 2 op +
+; adc tcc__r240 (0xf0), tcc__r0 (0x0) (fr type 0x4 c 4096 r type 0x0)
+; length xxy 4 vtop->type 0x4
+clc
+lda.b tcc__r0
+adc.w #64
+sta.b tcc__r0
+; load 1
+; type 17 reg 0x51f2 extra 0x0
+; ld1 [sp,-2],tcc__r1
+; stack adjust: fc + disp - loc - 256 -252
+lda.w #0
+sep #$20
+lda -2 + __printTime_locals + 1,s
+rep #$20
+sta.b tcc__r1
+; gen_opi len 2 op |
+; ora tcc__r240 (0xf0), tcc__r1 (0x1) (fr type 0x0 c -2 r type 0x11)
+; length xxy 2 vtop->type 0x0
+; nop
+lda.b tcc__r1
+ora.w #240
+sta.b tcc__r1
+; store r 0x1 fr 0x5100 ft 0x11 fc 0x1000
+; st1 tcc__r1, [tcc__r0,0]
+sep #$20
+lda.b tcc__r1
+sta.b [tcc__r0]
+rep #$20
+; load 0
+; type 16 reg 0x1f2 extra 0x505
+; ld2 [sp,-4],tcc__r0
+; stack adjust: fc + disp - loc - 256 -254
+lda -4 + __printTime_locals + 1,s
+sta.b tcc__r0
+; gen_opi len 2 op +
+; adc tcc__r240 (0xf0), tcc__r0 (0x0) (fr type 0x10 c -4 r type 0x10)
+; length xxy 2 vtop->type 0x10
+inc.b tcc__r0
+inc.b tcc__r0
+; store r 0x0 fr 0x1f2 ft 0x10 fc 0xfffffffc
+; st2 tcc__r0, [sp,-4]
+; stack adjust: fc + disp - loc - 256 -254
+lda.b tcc__r0
+sta -4 + __printTime_locals + 1,s
+; gsym_addr t 0 a 41481 ind 41481
+; ERROR no jump found to patch
+; add sp, #__printTime_locals
+.ifgr __printTime_locals 0
+tsa
+clc
+adc #__printTime_locals
+tas
+.endif
+rtl
+.ENDS
+.RAMSECTION "ram{WLA_FILENAME}.data" APPENDTO "globram.data"
+
+music dsb 1
+seaFrame dsb 1
+seaState dsb 1
+selectedOption dsb 1
+showTime dsb 1
+
+.ENDS
+
+.SECTION "{WLA_FILENAME}.data" APPENDTO "glob.data"
+
+.db $0
+.db $0
+.db $0
+.db $2
+.db $0
+.ENDS
+
+.SECTION ".rodata" SUPERFREE
+
+.ENDS
+
+.RAMSECTION ".bss" BANK $7e SLOT 2
+train dsb 8
+pad0 dsb 2
+padA dsb 1
+padUp dsb 1
+padDown dsb 1
+bstime dsb 6
+.ENDS

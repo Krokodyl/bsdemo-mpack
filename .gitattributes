@@ -1,0 +1,19 @@
+# Define binary file attributes.
+# - Do not treat them as text.
+# - Include binary diff in patches instead of "binary files differ."
+*.data binary
+*.pic binary
+*.map binary
+*.pal binary
+*.bps binary
+*.7z binary
+*.zip binary
+*.it binary
+*.bnk binary
+*.aseprite binary
+*.exe binary
+*.jar binary
+*.dbg binary
+*.obj binary
+*.bs binary
+*.sfc binary

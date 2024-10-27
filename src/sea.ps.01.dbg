@@ -1,0 +1,416 @@
+.include "hdr.asm"
+.accu 16
+.index 16
+.16bit
+.define __updateSeaWaves_locals 0
+.define __dmaSeaWaves_locals 0
+.define __initScrollingEffect_locals 0
+.define __updateScrollingEffect_locals 0
+
+.SECTION ".updateSeaWavestext_0x0" SUPERFREE
+
+updateSeaWaves:
+; sub sp,#__updateSeaWaves_locals
+.ifgr __updateSeaWaves_locals 0
+tsa
+sec
+sbc #__updateSeaWaves_locals
+tas
+.endif
+; load 0
+; type 17 reg 0x53f0 extra 0x0
+; ld1 [seaFrame + 0], tcc__r0
+lda.w #0
+sep #$20
+lda.l seaFrame + 0
+rep #$20
+sta.b tcc__r0
+; load 1
+; type 0 reg 0x0 extra 0x0
+; mov tcc__r0, tcc__r1
+lda.b tcc__r0
+sta.b tcc__r1
+lda.b tcc__r0h
+sta.b tcc__r1h
+; gen_opi len 2 op +
+; adc tcc__r240 (0xf0), tcc__r0 (0x0) (fr type 0x0 c 0 r type 0x11)
+; length xxy 2 vtop->type 0x0
+inc.b tcc__r0
+; store r 0x0 fr 0x53f0 ft 0x11 fc 0x0
+; st1 tcc__r0, [seaFrame,0]
+sep #$20
+lda.b tcc__r0
+sta.l seaFrame + 0
+rep #$20
+; load 0
+; type 17 reg 0x53f0 extra 0x0
+; ld1 [seaFrame + 0], tcc__r0
+lda.w #0
+sep #$20
+lda.l seaFrame + 0
+rep #$20
+sta.b tcc__r0
+; gen_opi len 2 op 0x94
+; cmpr(n)eq tcc__r0, #8
+ldx #1
+lda.b tcc__r0
+sec
+sbc #8
+tay
+beq +
+dex
++
+stx.b tcc__r5
+; gtst inv 1 t 0 v 5 r 915 ind 915
+; gsym_addr t 0 a 950 ind 950
+; ERROR no jump found to patch
+; tcc__r5 to compare reg
+lda.b tcc__r5 ; DON'T OPTIMIZE
+; gtst inv 1 t 0 v 243 r 1067 ind 1067
+; cmp op 0x95 inv 1 v 243 r 1067
+; cmp ne
+bne +
+; gsym_addr t 0 a 1154 ind 1154
+; ERROR no jump found to patch
+brl __local_0
++
+; gtst finished; t 1067
+; load 0
+; type 17 reg 0xf0 extra 0x0
+; ld1 #0,tcc__r0
+lda.w #0
+sta.b tcc__r0
+; store r 0x0 fr 0x53f0 ft 0x11 fc 0x0
+; st1 tcc__r0, [seaFrame,0]
+sep #$20
+lda.b tcc__r0
+sta.l seaFrame + 0
+rep #$20
+; load 0
+; type 17 reg 0x53f0 extra 0x0
+; ld1 [seaState + 0], tcc__r0
+lda.w #0
+sep #$20
+lda.l seaState + 0
+rep #$20
+sta.b tcc__r0
+; load 1
+; type 0 reg 0x0 extra 0x0
+; mov tcc__r0, tcc__r1
+lda.b tcc__r0
+sta.b tcc__r1
+lda.b tcc__r0h
+sta.b tcc__r1h
+; gen_opi len 2 op +
+; adc tcc__r240 (0xf0), tcc__r0 (0x0) (fr type 0x0 c 0 r type 0x11)
+; length xxy 2 vtop->type 0x0
+inc.b tcc__r0
+; store r 0x0 fr 0x53f0 ft 0x11 fc 0x0
+; st1 tcc__r0, [seaState,0]
+sep #$20
+lda.b tcc__r0
+sta.l seaState + 0
+rep #$20
+; load 0
+; type 17 reg 0x53f0 extra 0x0
+; ld1 [seaState + 0], tcc__r0
+lda.w #0
+sep #$20
+lda.l seaState + 0
+rep #$20
+sta.b tcc__r0
+; gen_opi len 2 op 0x94
+; cmpr(n)eq tcc__r0, #6
+ldx #1
+lda.b tcc__r0
+sec
+sbc #6
+tay
+beq +
+dex
++
+stx.b tcc__r5
+; gtst inv 1 t 0 v 5 r 2191 ind 2191
+; gsym_addr t 0 a 2228 ind 2228
+; tcc__r5 to compare reg
+lda.b tcc__r5 ; DON'T OPTIMIZE
+; gtst inv 1 t 0 v 243 r 2316 ind 2316
+; cmp op 0x95 inv 1 v 243 r 2316
+; cmp ne
+bne +
+; gsym_addr t 0 a 2403 ind 2403
+brl __local_1
++
+; gtst finished; t 2316
+; load 0
+; type 17 reg 0xf0 extra 0x0
+; ld1 #0,tcc__r0
+lda.w #0
+sta.b tcc__r0
+; store r 0x0 fr 0x53f0 ft 0x11 fc 0x0
+; st1 tcc__r0, [seaState,0]
+sep #$20
+lda.b tcc__r0
+sta.l seaState + 0
+rep #$20
+__local_1:
+; gsym_addr t 2316 a 2671 ind 2671
+__local_0:
+; gsym_addr t 1067 a 2706 ind 2706
+; gsym_addr t 0 a 2741 ind 2741
+; add sp, #__updateSeaWaves_locals
+.ifgr __updateSeaWaves_locals 0
+tsa
+clc
+adc #__updateSeaWaves_locals
+tas
+.endif
+rtl
+.ENDS
+
+.SECTION ".dmaSeaWavestext_0x1" SUPERFREE
+
+dmaSeaWaves:
+; sub sp,#__dmaSeaWaves_locals
+.ifgr __dmaSeaWaves_locals 0
+tsa
+sec
+sbc #__dmaSeaWaves_locals
+tas
+.endif
+; load 0
+; type 17 reg 0x53f0 extra 0x0
+; ld1 [seaState + 0], tcc__r0
+lda.w #0
+sep #$20
+lda.l seaState + 0
+rep #$20
+sta.b tcc__r0
+; gen_opi len 2 op 
+; shl tcc__r0, #9
+lda.b tcc__r0
+ldy.w #9
+-
+asl a
+dey
+bne -
++
+sta.b tcc__r0
+; load 1
+; type 132 reg 0x12f0 extra 0x0
+; ld4 #sea_waves_tiles + 0, tcc__r1 (type 0x84)
+lda.w #:sea_waves_tiles
+sta.b tcc__r1h
+lda.w #sea_waves_tiles + 0
+sta.b tcc__r1
+; gen_opi len 2 op +
+; adc tcc__r0 (0x0), tcc__r1 (0x1) (fr type 0x84 c 0 r type 0x86)
+; length xxy 4 vtop->type 0x84
+clc
+lda.b tcc__r1
+adc.b tcc__r0
+sta.b tcc__r1
+; push2 imm r 0xf0
+pea.w 512
+; push2 imm r 0xf0
+pea.w 1232
+; ldpush before load type 0x4 reg 0x5001
+; ldpush4 (type 0x4 reg 0x1) tcc__r1
+pei (tcc__r1h)
+pei (tcc__r1)
+; call r 0x2f0
+jsr.l dmaCopyVram
+; add sp, #8
+tsa
+clc
+adc #8
+tas
+; gsym_addr t 0 a 3850 ind 3850
+; add sp, #__dmaSeaWaves_locals
+.ifgr __dmaSeaWaves_locals 0
+tsa
+clc
+adc #__dmaSeaWaves_locals
+tas
+.endif
+rtl
+.ENDS
+
+.SECTION ".initScrollingEffecttext_0x2" SUPERFREE
+
+initScrollingEffect:
+; sub sp,#__initScrollingEffect_locals
+.ifgr __initScrollingEffect_locals 0
+tsa
+sec
+sbc #__initScrollingEffect_locals
+tas
+.endif
+; load 0
+; type 17 reg 0xf0 extra 0x0
+; ld1 #72,tcc__r0
+lda.w #72
+sta.b tcc__r0
+; store r 0x0 fr 0x53f0 ft 0x11 fc 0x0
+; st1 tcc__r0, [HDMATable16,0]
+sep #$20
+lda.b tcc__r0
+sta.l HDMATable16 + 0
+rep #$20
+; load 0
+; type 16 reg 0xf0 extra 0x0
+; ld2 #0,tcc__r0
+lda.w #0
+sta.b tcc__r0
+; store r 0x0 fr 0x3f0 ft 0x10 fc 0x1
+; st2 tcc__r0, [HDMATable16,1]
+lda.b tcc__r0
+sta.l HDMATable16 + 1
+; load 0
+; type 17 reg 0xf0 extra 0x0
+; ld1 #88,tcc__r0
+lda.w #88
+sta.b tcc__r0
+; store r 0x0 fr 0x53f0 ft 0x11 fc 0x3
+; st1 tcc__r0, [HDMATable16,3]
+sep #$20
+lda.b tcc__r0
+sta.l HDMATable16 + 3
+rep #$20
+; load 0
+; type 16 reg 0xf0 extra 0x0
+; ld2 #0,tcc__r0
+lda.w #0
+sta.b tcc__r0
+; store r 0x0 fr 0x3f0 ft 0x10 fc 0x4
+; st2 tcc__r0, [HDMATable16,4]
+lda.b tcc__r0
+sta.l HDMATable16 + 4
+; load 0
+; type 17 reg 0xf0 extra 0x0
+; ld1 #64,tcc__r0
+lda.w #64
+sta.b tcc__r0
+; store r 0x0 fr 0x53f0 ft 0x11 fc 0x6
+; st1 tcc__r0, [HDMATable16,6]
+sep #$20
+lda.b tcc__r0
+sta.l HDMATable16 + 6
+rep #$20
+; load 0
+; type 16 reg 0xf0 extra 0x0
+; ld2 #0,tcc__r0
+lda.w #0
+sta.b tcc__r0
+; store r 0x0 fr 0x3f0 ft 0x10 fc 0x7
+; st2 tcc__r0, [HDMATable16,7]
+lda.b tcc__r0
+sta.l HDMATable16 + 7
+; load 0
+; type 17 reg 0xf0 extra 0x0
+; ld1 #0,tcc__r0
+lda.w #0
+sta.b tcc__r0
+; store r 0x0 fr 0x53f0 ft 0x11 fc 0x9
+; st1 tcc__r0, [HDMATable16,9]
+sep #$20
+lda.b tcc__r0
+sta.l HDMATable16 + 9
+rep #$20
+; gsym_addr t 0 a 5563 ind 5563
+; add sp, #__initScrollingEffect_locals
+.ifgr __initScrollingEffect_locals 0
+tsa
+clc
+adc #__initScrollingEffect_locals
+tas
+.endif
+rtl
+.ENDS
+
+.SECTION ".updateScrollingEffecttext_0x3" SUPERFREE
+
+updateScrollingEffect:
+; sub sp,#__updateScrollingEffect_locals
+.ifgr __updateScrollingEffect_locals 0
+tsa
+sec
+sbc #__updateScrollingEffect_locals
+tas
+.endif
+; push1 imm r 0xf0
+sep #$20
+lda #0
+pha
+rep #$20
+; call r 0x2f0
+jsr.l setParallaxScrolling
+; add sp, #1
+tsa
+clc
+adc #1
+tas
+; load 0
+; type 16 reg 0x3f0 extra 0x2a
+; ld2 [HDMATable16 + 1], tcc__r0
+lda.l HDMATable16 + 1
+sta.b tcc__r0
+; gen_opi len 2 op +
+; adc tcc__r240 (0xf0), tcc__r0 (0x0) (fr type 0x10 c 1 r type 0x10)
+; length xxy 2 vtop->type 0x10
+inc.b tcc__r0
+; store r 0x0 fr 0x3f0 ft 0x10 fc 0x1
+; st2 tcc__r0, [HDMATable16,1]
+lda.b tcc__r0
+sta.l HDMATable16 + 1
+; load 0
+; type 16 reg 0x3f0 extra 0x0
+; ld2 [HDMATable16 + 4], tcc__r0
+lda.l HDMATable16 + 4
+sta.b tcc__r0
+; store r 0x0 fr 0x3f0 ft 0x10 fc 0x4
+; st2 tcc__r0, [HDMATable16,4]
+lda.b tcc__r0
+sta.l HDMATable16 + 4
+; load 0
+; type 16 reg 0x3f0 extra 0x2a
+; ld2 [HDMATable16 + 7], tcc__r0
+lda.l HDMATable16 + 7
+sta.b tcc__r0
+; gen_opi len 2 op -
+; sbc tcc__r240 (0xf0), tcc__r0 (0x0) (fr type 0x10 c 7 r type 0x10)
+; length xxy 2 vtop->type 0x10
+dec.b tcc__r0
+; store r 0x0 fr 0x3f0 ft 0x10 fc 0x7
+; st2 tcc__r0, [HDMATable16,7]
+lda.b tcc__r0
+sta.l HDMATable16 + 7
+; gsym_addr t 0 a 6980 ind 6980
+; add sp, #__updateScrollingEffect_locals
+.ifgr __updateScrollingEffect_locals 0
+tsa
+clc
+adc #__updateScrollingEffect_locals
+tas
+.endif
+rtl
+.ENDS
+.RAMSECTION "ram{WLA_FILENAME}.data" APPENDTO "globram.data"
+
+seaFrame dsb 1
+seaState dsb 1
+
+.ENDS
+
+.SECTION "{WLA_FILENAME}.data" APPENDTO "glob.data"
+
+.db $0
+.db $0
+.ENDS
+
+.SECTION ".rodata" SUPERFREE
+
+.ENDS
+
+.RAMSECTION ".bss" BANK $7e SLOT 2
+.ENDS

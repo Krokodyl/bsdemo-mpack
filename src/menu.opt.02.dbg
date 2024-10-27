@@ -1,0 +1,1315 @@
+.include "hdr.asm"
+.accu 16
+.index 16
+.16bit
+.define __drawMenuOption1_locals 0
+.define __drawMenuOption2_locals 0
+.define __drawMenuOption3_locals 0
+.define __drawMenu_locals 0
+.define __initMenu_locals 0
+.define __dmaMenu_locals 0
+.define __readInputs_locals 0
+.define __printValue_locals 2
+
+.SECTION ".drawMenuOption1text_0x0" SUPERFREE
+
+drawMenuOption1:
+.ifgr __drawMenuOption1_locals 0
+tsa
+sec
+sbc #__drawMenuOption1_locals
+tas
+.endif
+lda.w #1088
+sta.w ramAddress + 0
+lda.w #0
+sep #$20
+lda.l showTime + 0
+rep #$20
+sta.b tcc__r0
+cmp #0
+beq +
+brl __local_0
++
+lda.w #128
+sta.w shift + 0
+lda.w #0
+sep #$20
+lda.l selectedOption + 0
+rep #$20
+sta.b tcc__r0
+cmp #1
+beq +
+brl __local_1
++
+lda.w shift + 0
+clc
+adc.w #512
+sta.b tcc__r0
+sta.w shift + 0
+__local_1:
+stz.b tcc__r0
+lda.b tcc__r0
+sta.w i + 0
+__local_4:
+lda.w i + 0
+sta.b tcc__r0
+ldx #1
+sec
+sbc.w #128
+tay
+bcc ++
++ dex
+++
+stx.b tcc__r5
+txa
+bne +
+brl __local_2
++
+bra __local_3
+__local_5:
+lda.w i + 0
+inc a
+inc a
+sta.b tcc__r0
+sta.w i + 0
+bra __local_4
+__local_3:
+lda.w shift + 0
+sta.b tcc__r0
+lda.w i + 0
+sta.b tcc__r1
+clc
+adc.b tcc__r0
+sta.b tcc__r0
+lda.w #:bg3_m
+sta.b tcc__r1h
+lda.w #bg3_m + 0
+clc
+adc.b tcc__r0
+sta.b tcc__r1
+lda.b [tcc__r1]
+sta.w value16 + 0
+lda.w ramAddress + 0
+clc
+adc.w #4096
+sta.b tcc__r0
+lda.w i + 0
+sta.b tcc__r1
+clc
+adc.b tcc__r0
+sta.b tcc__r0
+lsr.b tcc__r0
+asl.b tcc__r0
+lda.w #:wram7f
+sta.b tcc__r1h
+lda.w #wram7f + 0
+clc
+adc.b tcc__r0
+sta.b tcc__r1
+lda.w value16 + 0
+sta.b tcc__r0
+sta.b [tcc__r1]
+jmp.w __local_5
+__local_2:
+jmp.w __local_6
+__local_0:
+lda.w #256
+sta.w shift + 0
+lda.w #0
+sep #$20
+lda.l selectedOption + 0
+rep #$20
+sta.b tcc__r0
+cmp #1
+beq +
+brl __local_7
++
+lda.w shift + 0
+clc
+adc.w #512
+sta.b tcc__r0
+sta.w shift + 0
+__local_7:
+stz.b tcc__r0
+lda.b tcc__r0
+sta.w i + 0
+__local_10:
+lda.w i + 0
+sta.b tcc__r0
+ldx #1
+sec
+sbc.w #128
+tay
+bcc ++
++ dex
+++
+stx.b tcc__r5
+txa
+bne +
+brl __local_8
++
+bra __local_9
+__local_11:
+lda.w i + 0
+inc a
+inc a
+sta.b tcc__r0
+sta.w i + 0
+bra __local_10
+__local_9:
+lda.w shift + 0
+sta.b tcc__r0
+lda.w i + 0
+sta.b tcc__r1
+clc
+adc.b tcc__r0
+sta.b tcc__r0
+lda.w #:bg3_m
+sta.b tcc__r1h
+lda.w #bg3_m + 0
+clc
+adc.b tcc__r0
+sta.b tcc__r1
+lda.b [tcc__r1]
+sta.w value16 + 0
+lda.w ramAddress + 0
+clc
+adc.w #4096
+sta.b tcc__r0
+lda.w i + 0
+sta.b tcc__r1
+clc
+adc.b tcc__r0
+sta.b tcc__r0
+lsr.b tcc__r0
+asl.b tcc__r0
+lda.w #:wram7f
+sta.b tcc__r1h
+lda.w #wram7f + 0
+clc
+adc.b tcc__r0
+sta.b tcc__r1
+lda.w value16 + 0
+sta.b tcc__r0
+sta.b [tcc__r1]
+jmp.w __local_11
+__local_8:
+__local_6:
+.ifgr __drawMenuOption1_locals 0
+tsa
+clc
+adc #__drawMenuOption1_locals
+tas
+.endif
+rtl
+.ENDS
+
+.SECTION ".drawMenuOption2text_0x1" SUPERFREE
+
+drawMenuOption2:
+.ifgr __drawMenuOption2_locals 0
+tsa
+sec
+sbc #__drawMenuOption2_locals
+tas
+.endif
+lda.w #1216
+sta.w ramAddress + 0
+lda.w #384
+sta.w shift + 0
+lda.w #0
+sep #$20
+lda.l selectedOption + 0
+rep #$20
+sta.b tcc__r0
+cmp #2
+beq +
+brl __local_12
++
+lda.w shift + 0
+clc
+adc.w #512
+sta.b tcc__r0
+sta.w shift + 0
+__local_12:
+stz.b tcc__r0
+lda.b tcc__r0
+sta.w i + 0
+__local_15:
+lda.w i + 0
+sta.b tcc__r0
+ldx #1
+sec
+sbc.w #128
+tay
+bcc ++
++ dex
+++
+stx.b tcc__r5
+txa
+bne +
+brl __local_13
++
+bra __local_14
+__local_16:
+lda.w i + 0
+inc a
+inc a
+sta.b tcc__r0
+sta.w i + 0
+bra __local_15
+__local_14:
+lda.w shift + 0
+sta.b tcc__r0
+lda.w i + 0
+sta.b tcc__r1
+clc
+adc.b tcc__r0
+sta.b tcc__r0
+lda.w #:bg3_m
+sta.b tcc__r1h
+lda.w #bg3_m + 0
+clc
+adc.b tcc__r0
+sta.b tcc__r1
+lda.b [tcc__r1]
+sta.w value16 + 0
+lda.w ramAddress + 0
+clc
+adc.w #4096
+sta.b tcc__r0
+lda.w i + 0
+sta.b tcc__r1
+clc
+adc.b tcc__r0
+sta.b tcc__r0
+lsr.b tcc__r0
+asl.b tcc__r0
+lda.w #:wram7f
+sta.b tcc__r1h
+lda.w #wram7f + 0
+clc
+adc.b tcc__r0
+sta.b tcc__r1
+lda.w value16 + 0
+sta.b tcc__r0
+sta.b [tcc__r1]
+jmp.w __local_16
+__local_13:
+.ifgr __drawMenuOption2_locals 0
+tsa
+clc
+adc #__drawMenuOption2_locals
+tas
+.endif
+rtl
+.ENDS
+
+.SECTION ".drawMenuOption3text_0x2" SUPERFREE
+
+drawMenuOption3:
+.ifgr __drawMenuOption3_locals 0
+tsa
+sec
+sbc #__drawMenuOption3_locals
+tas
+.endif
+lda.w #1344
+sta.w ramAddress + 0
+lda.w #512
+sta.w shift + 0
+lda.w #0
+sep #$20
+lda.l selectedOption + 0
+rep #$20
+sta.b tcc__r0
+cmp #3
+beq +
+brl __local_17
++
+lda.w shift + 0
+clc
+adc.w #512
+sta.b tcc__r0
+sta.w shift + 0
+__local_17:
+stz.b tcc__r0
+lda.b tcc__r0
+sta.w i + 0
+__local_20:
+lda.w i + 0
+sta.b tcc__r0
+ldx #1
+sec
+sbc.w #128
+tay
+bcc ++
++ dex
+++
+stx.b tcc__r5
+txa
+bne +
+brl __local_18
++
+bra __local_19
+__local_21:
+lda.w i + 0
+inc a
+inc a
+sta.b tcc__r0
+sta.w i + 0
+bra __local_20
+__local_19:
+lda.w shift + 0
+sta.b tcc__r0
+lda.w i + 0
+sta.b tcc__r1
+clc
+adc.b tcc__r0
+sta.b tcc__r0
+lda.w #:bg3_m
+sta.b tcc__r1h
+lda.w #bg3_m + 0
+clc
+adc.b tcc__r0
+sta.b tcc__r1
+lda.b [tcc__r1]
+sta.w value16 + 0
+lda.w ramAddress + 0
+clc
+adc.w #4096
+sta.b tcc__r0
+lda.w i + 0
+sta.b tcc__r1
+clc
+adc.b tcc__r0
+sta.b tcc__r0
+lsr.b tcc__r0
+asl.b tcc__r0
+lda.w #:wram7f
+sta.b tcc__r1h
+lda.w #wram7f + 0
+clc
+adc.b tcc__r0
+sta.b tcc__r1
+lda.w value16 + 0
+sta.b tcc__r0
+sta.b [tcc__r1]
+jmp.w __local_21
+__local_18:
+.ifgr __drawMenuOption3_locals 0
+tsa
+clc
+adc #__drawMenuOption3_locals
+tas
+.endif
+rtl
+.ENDS
+
+.SECTION ".drawMenutext_0x3" SUPERFREE
+
+drawMenu:
+.ifgr __drawMenu_locals 0
+tsa
+sec
+sbc #__drawMenu_locals
+tas
+.endif
+stz.b tcc__r0
+lda.b tcc__r0
+sta.w i + 0
+__local_24:
+lda.w i + 0
+sta.b tcc__r0
+ldx #1
+sec
+sbc.w #2048
+tay
+bcc ++
++ dex
+++
+stx.b tcc__r5
+txa
+bne +
+brl __local_22
++
+bra __local_23
+__local_25:
+lda.w i + 0
+sta.b tcc__r0
+sta.b tcc__r1
+lda.b tcc__r0h
+sta.b tcc__r1h
+inc.b tcc__r0
+lda.b tcc__r0
+sta.w i + 0
+bra __local_24
+__local_23:
+lda.w #:wram7f
+sta.b tcc__r0h
+lda.w #wram7f + 4096
+sta.b tcc__r0
+lda.w i + 0
+clc
+adc.b tcc__r0
+sta.b tcc__r0
+lda.w #0
+sta.b tcc__r1
+sep #$20
+sta.b [tcc__r0]
+rep #$20
+bra __local_25
+__local_22:
+lda.w #1024
+sta.w ramAddress + 0
+stz.b tcc__r0
+lda.b tcc__r0
+sta.w i + 0
+__local_28:
+lda.w i + 0
+sta.b tcc__r0
+ldx #1
+sec
+sbc.w #64
+tay
+bcc ++
++ dex
+++
+stx.b tcc__r5
+txa
+bne +
+brl __local_26
++
+bra __local_27
+__local_29:
+lda.w i + 0
+sta.b tcc__r0
+sta.b tcc__r1
+lda.b tcc__r0h
+sta.b tcc__r1h
+inc.b tcc__r0
+lda.b tcc__r0
+sta.w i + 0
+bra __local_28
+__local_27:
+lda.w #:bg3_m
+sta.b tcc__r0h
+lda.w #bg3_m + 0
+sta.b tcc__r0
+lda.w i + 0
+clc
+adc.b tcc__r0
+sta.b tcc__r0
+lda.w #0
+sep #$20
+lda.b [tcc__r0]
+sta.w value + 0
+rep #$20
+lda.w #:wram7f
+sta.b tcc__r0h
+lda.w #wram7f + 4096
+sta.b tcc__r0
+lda.w ramAddress + 0
+clc
+adc.b tcc__r0
+sta.b tcc__r0
+lda.w i + 0
+clc
+adc.b tcc__r0
+sta.b tcc__r0
+lda.w #0
+sep #$20
+lda.w value + 0
+rep #$20
+sta.b tcc__r1
+sep #$20
+sta.b [tcc__r0]
+rep #$20
+jmp.w __local_29
+__local_26:
+jsr.l drawMenuOption1
+jsr.l drawMenuOption2
+jsr.l drawMenuOption3
+lda.w #1472
+sta.w ramAddress + 0
+stz.b tcc__r0
+lda.b tcc__r0
+sta.w i + 0
+__local_32:
+lda.w i + 0
+sta.b tcc__r0
+ldx #1
+sec
+sbc.w #64
+tay
+bcc ++
++ dex
+++
+stx.b tcc__r5
+txa
+bne +
+brl __local_30
++
+bra __local_31
+__local_33:
+lda.w i + 0
+sta.b tcc__r0
+sta.b tcc__r1
+lda.b tcc__r0h
+sta.b tcc__r1h
+inc.b tcc__r0
+lda.b tcc__r0
+sta.w i + 0
+bra __local_32
+__local_31:
+lda.w #:bg3_m
+sta.b tcc__r0h
+lda.w #bg3_m + 64
+sta.b tcc__r0
+lda.w i + 0
+clc
+adc.b tcc__r0
+sta.b tcc__r0
+lda.w #0
+sep #$20
+lda.b [tcc__r0]
+sta.w value + 0
+rep #$20
+lda.w #:wram7f
+sta.b tcc__r0h
+lda.w #wram7f + 4096
+sta.b tcc__r0
+lda.w ramAddress + 0
+clc
+adc.b tcc__r0
+sta.b tcc__r0
+lda.w i + 0
+clc
+adc.b tcc__r0
+sta.b tcc__r0
+lda.w #0
+sep #$20
+lda.w value + 0
+rep #$20
+sta.b tcc__r1
+sep #$20
+sta.b [tcc__r0]
+rep #$20
+jmp.w __local_33
+__local_30:
+.ifgr __drawMenu_locals 0
+tsa
+clc
+adc #__drawMenu_locals
+tas
+.endif
+rtl
+.ENDS
+
+.SECTION ".initMenutext_0x4" SUPERFREE
+
+initMenu:
+.ifgr __initMenu_locals 0
+tsa
+sec
+sbc #__initMenu_locals
+tas
+.endif
+pea.w 2048
+pea.w 31744
+pea.w :wram7f
+pea.w wram7f + 4096
+jsr.l dmaCopyVram
+tsa
+clc
+adc #8
+tas
+.ifgr __initMenu_locals 0
+tsa
+clc
+adc #__initMenu_locals
+tas
+.endif
+rtl
+.ENDS
+
+.SECTION ".dmaMenutext_0x5" SUPERFREE
+
+dmaMenu:
+.ifgr __dmaMenu_locals 0
+tsa
+sec
+sbc #__dmaMenu_locals
+tas
+.endif
+pea.w 512
+pea.w 32256
+pea.w :wram7f
+pea.w wram7f + 5120
+jsr.l dmaCopyVram
+tsa
+clc
+adc #8
+tas
+.ifgr __dmaMenu_locals 0
+tsa
+clc
+adc #__dmaMenu_locals
+tas
+.endif
+rtl
+.ENDS
+
+.SECTION ".readInputstext_0x6" SUPERFREE
+
+readInputs:
+.ifgr __readInputs_locals 0
+tsa
+sec
+sbc #__readInputs_locals
+tas
+.endif
+lda.l pad_keys + 0
+sta.w pad0 + 0
+lda.w pad0 + 0
+and.w #2048
+sta.b tcc__r0
+lda.b tcc__r0 ; DON'T OPTIMIZE
+bne +
+brl __local_34
++
+lda.w #0
+sep #$20
+lda.w padUp + 0
+rep #$20
+sta.b tcc__r0
+lda.b tcc__r0 ; DON'T OPTIMIZE
+bne +
+brl __local_35
++
+jmp.w __local_36
+__local_35:
+lda.w #1
+sep #$20
+sta.w padUp + 0
+rep #$20
+lda.w #0
+sep #$20
+lda.l selectedOption + 0
+rep #$20
+sta.b tcc__r0
+ldx #1
+sec
+sbc.w #1
+tay
+beq ++
+bvc +
+eor #$8000
++
+bpl +++
+++
+dex
++++
+stx.b tcc__r5
+txa
+bne +
+brl __local_37
++
+lda.w #0
+sep #$20
+lda.l selectedOption + 0
+rep #$20
+sta.b tcc__r0
+sta.b tcc__r1
+lda.b tcc__r0h
+sta.b tcc__r1h
+dec.b tcc__r0
+sep #$20
+lda.b tcc__r0
+sta.l selectedOption + 0
+rep #$20
+bra __local_38
+__local_37:
+lda.w #3
+sta.b tcc__r0
+sep #$20
+sta.l selectedOption + 0
+rep #$20
+__local_38:
+lda.w #0
+sep #$20
+lda.l selectedOption + 0
+rep #$20
+sta.b tcc__r0
+cmp #1
+beq +
+brl __local_39
++
+jsr.l drawMenuOption1
+jsr.l drawMenuOption2
+__local_39:
+lda.w #0
+sep #$20
+lda.l selectedOption + 0
+rep #$20
+sta.b tcc__r0
+cmp #2
+beq +
+brl __local_40
++
+jsr.l drawMenuOption2
+jsr.l drawMenuOption3
+__local_40:
+lda.w #0
+sep #$20
+lda.l selectedOption + 0
+rep #$20
+sta.b tcc__r0
+cmp #3
+beq +
+brl __local_41
++
+jsr.l drawMenuOption3
+jsr.l drawMenuOption1
+__local_41:
+pea.w 0
+jsr.l playSound
+pla
+__local_36:
+bra __local_42
+__local_34:
+lda.w #0
+sta.b tcc__r0
+sep #$20
+sta.w padUp + 0
+rep #$20
+__local_42:
+lda.w pad0 + 0
+and.w #1024
+sta.b tcc__r0
+lda.b tcc__r0 ; DON'T OPTIMIZE
+bne +
+brl __local_43
++
+lda.w #0
+sep #$20
+lda.w padDown + 0
+rep #$20
+sta.b tcc__r0
+lda.b tcc__r0 ; DON'T OPTIMIZE
+bne +
+brl __local_44
++
+jmp.w __local_45
+__local_44:
+lda.w #1
+sep #$20
+sta.w padDown + 0
+rep #$20
+lda.w #0
+sep #$20
+lda.l selectedOption + 0
+rep #$20
+sta.b tcc__r0
+sec
+sbc.w #3
+bvc +
+eor #$8000
++
+bmi +
+brl __local_46
++
+lda.w #0
+sep #$20
+lda.l selectedOption + 0
+rep #$20
+sta.b tcc__r0
+sta.b tcc__r1
+lda.b tcc__r0h
+sta.b tcc__r1h
+inc.b tcc__r0
+sep #$20
+lda.b tcc__r0
+sta.l selectedOption + 0
+rep #$20
+bra __local_47
+__local_46:
+lda.w #1
+sta.b tcc__r0
+sep #$20
+sta.l selectedOption + 0
+rep #$20
+__local_47:
+lda.w #0
+sep #$20
+lda.l selectedOption + 0
+rep #$20
+sta.b tcc__r0
+cmp #2
+beq +
+brl __local_48
++
+jsr.l drawMenuOption1
+jsr.l drawMenuOption2
+__local_48:
+lda.w #0
+sep #$20
+lda.l selectedOption + 0
+rep #$20
+sta.b tcc__r0
+cmp #3
+beq +
+brl __local_49
++
+jsr.l drawMenuOption2
+jsr.l drawMenuOption3
+__local_49:
+lda.w #0
+sep #$20
+lda.l selectedOption + 0
+rep #$20
+sta.b tcc__r0
+cmp #1
+beq +
+brl __local_50
++
+jsr.l drawMenuOption3
+jsr.l drawMenuOption1
+__local_50:
+pea.w 0
+jsr.l playSound
+pla
+__local_45:
+bra __local_51
+__local_43:
+lda.w #0
+sta.b tcc__r0
+sep #$20
+sta.w padDown + 0
+rep #$20
+__local_51:
+lda.w pad0 + 0
+and.w #128
+sta.b tcc__r0
+lda.b tcc__r0 ; DON'T OPTIMIZE
+bne +
+brl __local_52
++
+lda.w #0
+sep #$20
+lda.w padA + 0
+rep #$20
+sta.b tcc__r0
+lda.b tcc__r0 ; DON'T OPTIMIZE
+bne +
+brl __local_53
++
+jmp.w __local_54
+__local_53:
+lda.w #1
+sep #$20
+sta.w padA + 0
+rep #$20
+lda.w #0
+sep #$20
+lda.l selectedOption + 0
+rep #$20
+sta.b tcc__r0
+cmp #1
+beq +
+brl __local_55
++
+lda.w #0
+sep #$20
+lda.l showTime + 0
+rep #$20
+sta.b tcc__r0
+cmp #0
+beq +
+brl __local_56
++
+lda.w #1
+sta.b tcc__r0
+sep #$20
+sta.l showTime + 0
+rep #$20
+bra __local_57
+__local_56:
+lda.w #0
+sta.b tcc__r0
+sep #$20
+sta.l showTime + 0
+rep #$20
+__local_57:
+jsr.l drawMenuOption1
+__local_55:
+lda.w #0
+sep #$20
+lda.l selectedOption + 0
+rep #$20
+sta.b tcc__r0
+cmp #3
+beq +
+brl __local_58
++
+pea.w 1
+jsr.l playSound
+pla
+pea.w 30
+pea.w 0
+jsr.l spcFadeModuleVolume
+tsa
+clc
+adc #4
+tas
+sep #$20
+lda #1
+pha
+rep #$20
+jsr.l setFadeEffect
+tsa
+clc
+adc #1
+tas
+jsr.l bsRebootBios
+__local_58:
+lda.w #0
+sep #$20
+lda.l selectedOption + 0
+rep #$20
+sta.b tcc__r0
+cmp #2
+beq +
+brl __local_59
++
+pea.w 1
+jsr.l playSound
+pla
+pea.w 30
+pea.w 0
+jsr.l spcFadeModuleVolume
+tsa
+clc
+adc #4
+tas
+sep #$20
+lda #1
+pha
+rep #$20
+jsr.l setFadeEffect
+tsa
+clc
+adc #1
+tas
+jsr.l spcReset
+jsr.l bsReturnToTown
+__local_59:
+pea.w 1
+jsr.l playSound
+pla
+__local_54:
+bra __local_60
+__local_52:
+lda.w #0
+sta.b tcc__r0
+sep #$20
+sta.w padA + 0
+rep #$20
+__local_60:
+.ifgr __readInputs_locals 0
+tsa
+clc
+adc #__readInputs_locals
+tas
+.endif
+rtl
+.ENDS
+
+.SECTION ".printValuetext_0x7" SUPERFREE
+
+printValue:
+.ifgr __printValue_locals 0
+tsa
+sec
+sbc #__printValue_locals
+tas
+.endif
+lda 6 + __printValue_locals + 1,s
+sta.b tcc__r0
+lda 8 + __printValue_locals + 1,s
+sta.b tcc__r1
+clc
+adc.b tcc__r0
+dec a
+and.w #255
+sep #$20
+sta -1 + __printValue_locals + 1,s
+rep #$20
+lda.w #0
+sep #$20
+lda 3 + __printValue_locals + 1,s
+rep #$20
+sta.b tcc__r0
+tax
+lda.w #10
+jsr.l tcc__div
+stx.b tcc__r0
+clc
+lda.b tcc__r0
+adc.w #224
+sep #$20
+sta -2 + __printValue_locals + 1,s
+rep #$20
+lda 4 + __printValue_locals + 1,s
+sta.b tcc__r0
+ldy.w #6
+-
+asl a
+dey
+bne -
++
+sta.b tcc__r0
+lda.w #:wram7f
+sta.b tcc__r1h
+lda.w #wram7f + 4096
+clc
+adc.b tcc__r0
+sta.b tcc__r1
+lda.w #0
+sep #$20
+lda -1 + __printValue_locals + 1,s
+rep #$20
+asl a
+clc
+adc.b tcc__r1
+sta.b tcc__r1
+lda.w #0
+sep #$20
+lda -2 + __printValue_locals + 1,s
+sta.b [tcc__r1]
+rep #$20
+lda 4 + __printValue_locals + 1,s
+inc a
+sta.b tcc__r0
+ldy.w #6
+-
+asl a
+dey
+bne -
++
+sta.b tcc__r0
+lda.w #:wram7f
+sta.b tcc__r1h
+lda.w #wram7f + 4096
+clc
+adc.b tcc__r0
+sta.b tcc__r1
+lda.w #0
+sep #$20
+lda -1 + __printValue_locals + 1,s
+rep #$20
+asl a
+clc
+adc.b tcc__r1
+sta.b tcc__r1
+lda.w #0
+sep #$20
+lda -2 + __printValue_locals + 1,s
+rep #$20
+clc
+adc.w #16
+sep #$20
+sta.b [tcc__r1]
+rep #$20
+lda.w #0
+sep #$20
+lda 3 + __printValue_locals + 1,s
+rep #$20
+sta.b tcc__r0
+tax
+lda.w #10
+jsr.l tcc__div
+lda.b tcc__r9
+sta.b tcc__r0
+sep #$20
+sta 3 + __printValue_locals + 1,s
+rep #$20
+__local_62:
+lda.w #0
+sep #$20
+lda 3 + __printValue_locals + 1,s
+rep #$20
+sta.b tcc__r0
+ldx #1
+sec
+sbc.w #0
+tay
+beq ++
+bvc +
+eor #$8000
++
+bpl +++
+++
+dex
++++
+stx.b tcc__r5
+txa
+bne +
+brl __local_61
++
+lda.w #0
+sep #$20
+lda -1 + __printValue_locals + 1,s
+rep #$20
+sta.b tcc__r0
+sta.b tcc__r1
+lda.b tcc__r0h
+sta.b tcc__r1h
+dec.b tcc__r0
+sep #$20
+lda.b tcc__r0
+sta -1 + __printValue_locals + 1,s
+rep #$20
+lda.w #0
+sep #$20
+lda 3 + __printValue_locals + 1,s
+rep #$20
+sta.b tcc__r0
+tax
+lda.w #10
+jsr.l tcc__div
+stx.b tcc__r0
+clc
+lda.b tcc__r0
+adc.w #224
+sep #$20
+sta -2 + __printValue_locals + 1,s
+rep #$20
+lda 4 + __printValue_locals + 1,s
+sta.b tcc__r0
+ldy.w #6
+-
+asl a
+dey
+bne -
++
+sta.b tcc__r0
+lda.w #:wram7f
+sta.b tcc__r1h
+lda.w #wram7f + 4096
+clc
+adc.b tcc__r0
+sta.b tcc__r1
+lda.w #0
+sep #$20
+lda -1 + __printValue_locals + 1,s
+rep #$20
+asl a
+clc
+adc.b tcc__r1
+sta.b tcc__r1
+lda.w #0
+sep #$20
+lda -2 + __printValue_locals + 1,s
+sta.b [tcc__r1]
+rep #$20
+lda 4 + __printValue_locals + 1,s
+inc a
+sta.b tcc__r0
+ldy.w #6
+-
+asl a
+dey
+bne -
++
+sta.b tcc__r0
+lda.w #:wram7f
+sta.b tcc__r1h
+lda.w #wram7f + 4096
+clc
+adc.b tcc__r0
+sta.b tcc__r1
+lda.w #0
+sep #$20
+lda -1 + __printValue_locals + 1,s
+rep #$20
+asl a
+clc
+adc.b tcc__r1
+sta.b tcc__r1
+lda.w #0
+sep #$20
+lda -2 + __printValue_locals + 1,s
+rep #$20
+clc
+adc.w #16
+sep #$20
+sta.b [tcc__r1]
+rep #$20
+lda.w #0
+sep #$20
+lda 3 + __printValue_locals + 1,s
+rep #$20
+sta.b tcc__r0
+tax
+lda.w #10
+jsr.l tcc__div
+lda.b tcc__r9
+sta.b tcc__r0
+sep #$20
+sta 3 + __printValue_locals + 1,s
+rep #$20
+jmp.w __local_62
+__local_61:
+.ifgr __printValue_locals 0
+tsa
+clc
+adc #__printValue_locals
+tas
+.endif
+rtl
+.ENDS
+.RAMSECTION "ram{WLA_FILENAME}.data" APPENDTO "globram.data"
+
+music dsb 1
+seaFrame dsb 1
+seaState dsb 1
+selectedOption dsb 1
+showTime dsb 1
+maskPalette dsb 1
+maskPaletteSelected dsb 1
+
+.ENDS
+
+.SECTION "{WLA_FILENAME}.data" APPENDTO "glob.data"
+
+.db $0
+.db $0
+.db $0
+.db $2
+.db $0
+.db $24
+.db $28
+.ENDS
+
+.SECTION ".rodata" SUPERFREE
+
+.ENDS
+
+.RAMSECTION ".bss" BANK $7e SLOT 2
+bstime dsb 6
+train dsb 8
+pad0 dsb 2
+padA dsb 1
+padUp dsb 1
+padDown dsb 1
+ramAddress dsb 2
+shift dsb 2
+shift1 dsb 2
+shift2 dsb 2
+i dsb 2
+value dsb 1
+value16 dsb 2
+mask dsb 1
+.ENDS

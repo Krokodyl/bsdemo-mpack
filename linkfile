@@ -1,0 +1,15 @@
+[objects]
+bs-demo.obj
+src/bstime.obj
+src/menu.obj
+src/sea.obj
+src/sounds.obj
+src/train.obj
+snd/soundbank.obj
+bs-features.obj
+data.obj
+hdr.obj
+d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/crt0_snes.obj
+d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj
+d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libm.obj
+d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libtcc.obj

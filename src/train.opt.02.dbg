@@ -1,0 +1,1601 @@
+.include "hdr.asm"
+.accu 16
+.index 16
+.16bit
+.define __initTrain_locals 0
+.define __loadSprites_locals 0
+.define __drawTrain_locals 0
+.define __drawRods_locals 0
+.define __drawCharacters_locals 0
+.define __animateTrain_locals 0
+.define __animateRods_locals 0
+.define __updateTrain_locals 0
+
+.SECTION ".initTraintext_0x0" SUPERFREE
+
+initTrain:
+.ifgr __initTrain_locals 0
+tsa
+sec
+sbc #__initTrain_locals
+tas
+.endif
+lda.w #400
+sta.w train + 0
+lda.w #93
+sta.w train + 2
+lda.w #0
+sep #$20
+sta.w train + 4
+rep #$20
+lda.w #0
+sep #$20
+sta.w train + 5
+rep #$20
+lda.w #0
+sta.b tcc__r0
+sep #$20
+sta.w train + 6
+rep #$20
+.ifgr __initTrain_locals 0
+tsa
+clc
+adc #__initTrain_locals
+tas
+.endif
+rtl
+.ENDS
+
+.SECTION ".loadSpritestext_0x1" SUPERFREE
+
+loadSprites:
+.ifgr __loadSprites_locals 0
+tsa
+sec
+sbc #__loadSprites_locals
+tas
+.endif
+lda.w #:sprites_tiles_end
+sta.b tcc__r0h
+lda.w #sprites_tiles_end + 0
+sta.b tcc__r0
+lda.w #:sprites_tiles
+lda.w #sprites_tiles + 0
+sta.b tcc__r1
+sec
+lda.b tcc__r0
+sbc.b tcc__r1
+sta.b tcc__r0
+lda.w #:sprites_p_end
+lda.w #sprites_p_end + 0
+sta.b tcc__r1
+lda.w #:sprites_p
+lda.w #sprites_p + 0
+sta.b tcc__r2
+sec
+lda.b tcc__r1
+sbc.b tcc__r2
+sta.b tcc__r1
+sep #$20
+lda #0
+pha
+rep #$20
+pea.w 16384
+sep #$20
+lda #0
+pha
+rep #$20
+pei (tcc__r1)
+pea.w :sprites_p
+pea.w sprites_p + 0
+pei (tcc__r0)
+pea.w :sprites_tiles
+pea.w sprites_tiles + 0
+jsr.l oamInitGfxSet
+tsa
+clc
+adc #16
+tas
+.ifgr __loadSprites_locals 0
+tsa
+clc
+adc #__loadSprites_locals
+tas
+.endif
+rtl
+.ENDS
+
+.SECTION ".drawTraintext_0x2" SUPERFREE
+
+drawTrain:
+.ifgr __drawTrain_locals 0
+tsa
+sec
+sbc #__drawTrain_locals
+tas
+.endif
+pea.w (0 * 256 + 1)
+sep #$20
+rep #$20
+pea.w 84
+jsr.l oamSetEx
+tsa
+clc
+adc #4
+tas
+pea.w (0 * 256 + 1)
+sep #$20
+rep #$20
+pea.w 88
+jsr.l oamSetEx
+tsa
+clc
+adc #4
+tas
+pea.w (0 * 256 + 1)
+sep #$20
+rep #$20
+pea.w 92
+jsr.l oamSetEx
+tsa
+clc
+adc #4
+tas
+pea.w (0 * 256 + 0)
+sep #$20
+rep #$20
+pea.w 80
+jsr.l oamSetEx
+tsa
+clc
+adc #4
+tas
+pea.w (0 * 256 + 1)
+sep #$20
+rep #$20
+pea.w 96
+jsr.l oamSetEx
+tsa
+clc
+adc #4
+tas
+pea.w (0 * 256 + 1)
+sep #$20
+rep #$20
+pea.w 100
+jsr.l oamSetEx
+tsa
+clc
+adc #4
+tas
+pea.w (0 * 256 + 1)
+sep #$20
+rep #$20
+pea.w 104
+jsr.l oamSetEx
+tsa
+clc
+adc #4
+tas
+pea.w (0 * 256 + 1)
+sep #$20
+rep #$20
+pea.w 108
+jsr.l oamSetEx
+tsa
+clc
+adc #4
+tas
+pea.w (0 * 256 + 1)
+sep #$20
+rep #$20
+pea.w 112
+jsr.l oamSetEx
+tsa
+clc
+adc #4
+tas
+pea.w (0 * 256 + 1)
+sep #$20
+rep #$20
+pea.w 116
+jsr.l oamSetEx
+tsa
+clc
+adc #4
+tas
+pea.w (0 * 256 + 1)
+sep #$20
+rep #$20
+pea.w 120
+jsr.l oamSetEx
+tsa
+clc
+adc #4
+tas
+pea.w (0 * 256 + 1)
+sep #$20
+rep #$20
+pea.w 124
+jsr.l oamSetEx
+tsa
+clc
+adc #4
+tas
+sep #$20
+lda #2
+pha
+rep #$20
+pea.w 0
+pea.w (0 * 256 + 0)
+sep #$20
+lda #3
+pha
+rep #$20
+lda.w train + 2
+pha
+lda.w train + 0
+pha
+pea.w 84
+jsr.l oamSet
+tsa
+clc
+adc #12
+tas
+lda.w train + 2
+clc
+adc.w #16
+sta.b tcc__r0
+sep #$20
+lda #2
+pha
+rep #$20
+pea.w 32
+pea.w (0 * 256 + 0)
+sep #$20
+lda #3
+pha
+rep #$20
+pei (tcc__r0)
+lda.w train + 0
+pha
+pea.w 88
+jsr.l oamSet
+tsa
+clc
+adc #12
+tas
+lda.w train + 0
+clc
+adc.w #16
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #16
+sta.b tcc__r1
+sep #$20
+lda #2
+pha
+rep #$20
+pea.w 34
+pea.w (0 * 256 + 0)
+sep #$20
+lda #3
+pha
+rep #$20
+pei (tcc__r1)
+pei (tcc__r0)
+pea.w 92
+jsr.l oamSet
+tsa
+clc
+adc #12
+tas
+lda.w train + 0
+clc
+adc.w #16
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #16
+sta.b tcc__r1
+sep #$20
+lda #2
+pha
+rep #$20
+pea.w 2
+pea.w (0 * 256 + 0)
+sep #$20
+lda #3
+pha
+rep #$20
+pei (tcc__r1)
+pei (tcc__r0)
+pea.w 80
+jsr.l oamSet
+tsa
+clc
+adc #12
+tas
+lda.w train + 0
+sec
+sbc.w #32
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #16
+sta.b tcc__r1
+sep #$20
+lda #3
+pha
+rep #$20
+pea.w 36
+pea.w (0 * 256 + 0)
+sep #$20
+lda #3
+pha
+rep #$20
+pei (tcc__r1)
+pei (tcc__r0)
+pea.w 96
+jsr.l oamSet
+tsa
+clc
+adc #12
+tas
+lda.w train + 0
+sec
+sbc.w #16
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #16
+sta.b tcc__r1
+sep #$20
+lda #3
+pha
+rep #$20
+pea.w 38
+pea.w (0 * 256 + 0)
+sep #$20
+lda #3
+pha
+rep #$20
+pei (tcc__r1)
+pei (tcc__r0)
+pea.w 100
+jsr.l oamSet
+tsa
+clc
+adc #12
+tas
+lda.w train + 0
+sec
+sbc.w #64
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #16
+sta.b tcc__r1
+sep #$20
+lda #5
+pha
+rep #$20
+pea.w 36
+pea.w (0 * 256 + 0)
+sep #$20
+lda #3
+pha
+rep #$20
+pei (tcc__r1)
+pei (tcc__r0)
+pea.w 104
+jsr.l oamSet
+tsa
+clc
+adc #12
+tas
+lda.w train + 0
+sec
+sbc.w #48
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #16
+sta.b tcc__r1
+sep #$20
+lda #5
+pha
+rep #$20
+pea.w 38
+pea.w (0 * 256 + 0)
+sep #$20
+lda #3
+pha
+rep #$20
+pei (tcc__r1)
+pei (tcc__r0)
+pea.w 108
+jsr.l oamSet
+tsa
+clc
+adc #12
+tas
+lda.w train + 0
+sec
+sbc.w #96
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #16
+sta.b tcc__r1
+sep #$20
+lda #7
+pha
+rep #$20
+pea.w 36
+pea.w (0 * 256 + 0)
+sep #$20
+lda #3
+pha
+rep #$20
+pei (tcc__r1)
+pei (tcc__r0)
+pea.w 112
+jsr.l oamSet
+tsa
+clc
+adc #12
+tas
+lda.w train + 0
+sec
+sbc.w #80
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #16
+sta.b tcc__r1
+sep #$20
+lda #7
+pha
+rep #$20
+pea.w 38
+pea.w (0 * 256 + 0)
+sep #$20
+lda #3
+pha
+rep #$20
+pei (tcc__r1)
+pei (tcc__r0)
+pea.w 116
+jsr.l oamSet
+tsa
+clc
+adc #12
+tas
+lda.w train + 0
+sec
+sbc.w #128
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #16
+sta.b tcc__r1
+sep #$20
+lda #0
+pha
+rep #$20
+pea.w 40
+pea.w (0 * 256 + 0)
+sep #$20
+lda #3
+pha
+rep #$20
+pei (tcc__r1)
+pei (tcc__r0)
+pea.w 120
+jsr.l oamSet
+tsa
+clc
+adc #12
+tas
+lda.w train + 0
+sec
+sbc.w #112
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #16
+sta.b tcc__r1
+sep #$20
+lda #0
+pha
+rep #$20
+pea.w 42
+pea.w (0 * 256 + 0)
+sep #$20
+lda #3
+pha
+rep #$20
+pei (tcc__r1)
+pei (tcc__r0)
+pea.w 124
+jsr.l oamSet
+tsa
+clc
+adc #12
+tas
+jsr.l drawRods
+jsr.l drawCharacters
+.ifgr __drawTrain_locals 0
+tsa
+clc
+adc #__drawTrain_locals
+tas
+.endif
+rtl
+.ENDS
+
+.SECTION ".drawRodstext_0x3" SUPERFREE
+
+drawRods:
+.ifgr __drawRods_locals 0
+tsa
+sec
+sbc #__drawRods_locals
+tas
+.endif
+pea.w (0 * 256 + 1)
+sep #$20
+rep #$20
+pea.w 40
+jsr.l oamSetEx
+tsa
+clc
+adc #4
+tas
+pea.w (0 * 256 + 1)
+sep #$20
+rep #$20
+pea.w 44
+jsr.l oamSetEx
+tsa
+clc
+adc #4
+tas
+lda.w train + 2
+clc
+adc.w #25
+sta.b tcc__r0
+sep #$20
+lda #2
+pha
+rep #$20
+pea.w 64
+pea.w (0 * 256 + 0)
+sep #$20
+lda #3
+pha
+rep #$20
+pei (tcc__r0)
+lda.w train + 0
+pha
+pea.w 40
+jsr.l oamSet
+tsa
+clc
+adc #12
+tas
+lda.w train + 0
+clc
+adc.w #16
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #25
+sta.b tcc__r1
+sep #$20
+lda #2
+pha
+rep #$20
+pea.w 66
+pea.w (0 * 256 + 0)
+sep #$20
+lda #3
+pha
+rep #$20
+pei (tcc__r1)
+pei (tcc__r0)
+pea.w 44
+jsr.l oamSet
+tsa
+clc
+adc #12
+tas
+.ifgr __drawRods_locals 0
+tsa
+clc
+adc #__drawRods_locals
+tas
+.endif
+rtl
+.ENDS
+
+.SECTION ".drawCharacterstext_0x4" SUPERFREE
+
+drawCharacters:
+.ifgr __drawCharacters_locals 0
+tsa
+sec
+sbc #__drawCharacters_locals
+tas
+.endif
+pea.w (0 * 256 + 1)
+sep #$20
+rep #$20
+pea.w 0
+jsr.l oamSetEx
+tsa
+clc
+adc #4
+tas
+lda.w train + 0
+sec
+sbc.w #32
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #8
+sta.b tcc__r1
+sep #$20
+lda #6
+pha
+rep #$20
+pea.w 4
+pea.w (0 * 256 + 0)
+sep #$20
+lda #3
+pha
+rep #$20
+pei (tcc__r1)
+pei (tcc__r0)
+pea.w 0
+jsr.l oamSet
+tsa
+clc
+adc #12
+tas
+pea.w (0 * 256 + 1)
+sep #$20
+rep #$20
+pea.w 4
+jsr.l oamSetEx
+tsa
+clc
+adc #4
+tas
+lda.w train + 0
+sec
+sbc.w #64
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #8
+sta.b tcc__r1
+sep #$20
+lda #3
+pha
+rep #$20
+pea.w 6
+pea.w (0 * 256 + 0)
+sep #$20
+lda #3
+pha
+rep #$20
+pei (tcc__r1)
+pei (tcc__r0)
+pea.w 4
+jsr.l oamSet
+tsa
+clc
+adc #12
+tas
+pea.w (0 * 256 + 1)
+sep #$20
+rep #$20
+pea.w 8
+jsr.l oamSetEx
+tsa
+clc
+adc #4
+tas
+lda.w train + 0
+sec
+sbc.w #96
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #8
+sta.b tcc__r1
+sep #$20
+lda #1
+pha
+rep #$20
+pea.w 8
+pea.w (0 * 256 + 0)
+sep #$20
+lda #3
+pha
+rep #$20
+pei (tcc__r1)
+pei (tcc__r0)
+pea.w 8
+jsr.l oamSet
+tsa
+clc
+adc #12
+tas
+pea.w (0 * 256 + 1)
+sep #$20
+rep #$20
+pea.w 12
+jsr.l oamSetEx
+tsa
+clc
+adc #4
+tas
+pea.w (0 * 256 + 1)
+sep #$20
+rep #$20
+pea.w 16
+jsr.l oamSetEx
+tsa
+clc
+adc #4
+tas
+lda.w train + 0
+sec
+sbc.w #128
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #8
+sta.b tcc__r1
+sep #$20
+lda #0
+pha
+rep #$20
+pea.w 12
+pea.w (0 * 256 + 0)
+sep #$20
+lda #3
+pha
+rep #$20
+pei (tcc__r1)
+pei (tcc__r0)
+pea.w 12
+jsr.l oamSet
+tsa
+clc
+adc #12
+tas
+lda.w train + 0
+sec
+sbc.w #112
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #8
+sta.b tcc__r1
+sep #$20
+lda #0
+pha
+rep #$20
+pea.w 14
+pea.w (0 * 256 + 0)
+sep #$20
+lda #3
+pha
+rep #$20
+pei (tcc__r1)
+pei (tcc__r0)
+pea.w 16
+jsr.l oamSet
+tsa
+clc
+adc #12
+tas
+.ifgr __drawCharacters_locals 0
+tsa
+clc
+adc #__drawCharacters_locals
+tas
+.endif
+rtl
+.ENDS
+
+.SECTION ".animateTraintext_0x5" SUPERFREE
+
+animateTrain:
+.ifgr __animateTrain_locals 0
+tsa
+sec
+sbc #__animateTrain_locals
+tas
+.endif
+lda.w train + 2
+pha
+lda.w train + 0
+pha
+pea.w 84
+jsr.l oamSetXY
+tsa
+clc
+adc #6
+tas
+lda.w train + 2
+clc
+adc.w #16
+pha
+lda.w train + 0
+pha
+pea.w 88
+jsr.l oamSetXY
+tsa
+clc
+adc #6
+tas
+lda.w train + 0
+clc
+adc.w #16
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #16
+pha
+pei (tcc__r0)
+pea.w 92
+jsr.l oamSetXY
+tsa
+clc
+adc #6
+tas
+lda.w train + 0
+clc
+adc.w #16
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #16
+pha
+pei (tcc__r0)
+pea.w 80
+jsr.l oamSetXY
+tsa
+clc
+adc #6
+tas
+lda.w train + 0
+sec
+sbc.w #32
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #16
+pha
+pei (tcc__r0)
+pea.w 96
+jsr.l oamSetXY
+tsa
+clc
+adc #6
+tas
+lda.w train + 0
+sec
+sbc.w #16
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #16
+pha
+pei (tcc__r0)
+pea.w 100
+jsr.l oamSetXY
+tsa
+clc
+adc #6
+tas
+lda.w train + 0
+sec
+sbc.w #64
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #16
+pha
+pei (tcc__r0)
+pea.w 104
+jsr.l oamSetXY
+tsa
+clc
+adc #6
+tas
+lda.w train + 0
+sec
+sbc.w #48
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #16
+pha
+pei (tcc__r0)
+pea.w 108
+jsr.l oamSetXY
+tsa
+clc
+adc #6
+tas
+lda.w train + 0
+sec
+sbc.w #96
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #16
+pha
+pei (tcc__r0)
+pea.w 112
+jsr.l oamSetXY
+tsa
+clc
+adc #6
+tas
+lda.w train + 0
+sec
+sbc.w #80
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #16
+pha
+pei (tcc__r0)
+pea.w 116
+jsr.l oamSetXY
+tsa
+clc
+adc #6
+tas
+lda.w train + 0
+sec
+sbc.w #128
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #16
+pha
+pei (tcc__r0)
+pea.w 120
+jsr.l oamSetXY
+tsa
+clc
+adc #6
+tas
+lda.w train + 0
+sec
+sbc.w #112
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #16
+pha
+pei (tcc__r0)
+pea.w 124
+jsr.l oamSetXY
+tsa
+clc
+adc #6
+tas
+lda.w train + 2
+clc
+adc.w #25
+pha
+lda.w train + 0
+pha
+pea.w (11 * 256 + 10)
+sep #$20
+rep #$20
+jsr.l animateRods
+tsa
+clc
+adc #6
+tas
+lda.w #0
+sep #$20
+lda.w train + 5
+rep #$20
+sta.b tcc__r0
+ldx #1
+sec
+sbc #0
+tay
+beq +
+dex
++
+stx.b tcc__r5
+txa
+beq +
+brl __local_0
++
+lda.w #0
+sep #$20
+lda.w train + 5
+rep #$20
+sta.b tcc__r0
+ldx #1
+sec
+sbc #2
+tay
+beq +
+dex
++
+stx.b tcc__r5
+txa
+beq +
+__local_0:
+brl __local_1
++
+jmp.w __local_2
+__local_1:
+pea.w 12
+pea.w 12
+jsr.l oamSetGfxOffset
+tsa
+clc
+adc #4
+tas
+pea.w 14
+pea.w 16
+jsr.l oamSetGfxOffset
+tsa
+clc
+adc #4
+tas
+lda.w train + 0
+sec
+sbc.w #128
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #8
+pha
+pei (tcc__r0)
+pea.w 12
+jsr.l oamSetXY
+tsa
+clc
+adc #6
+tas
+lda.w train + 0
+sec
+sbc.w #112
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #8
+pha
+pei (tcc__r0)
+pea.w 16
+jsr.l oamSetXY
+tsa
+clc
+adc #6
+tas
+pea.w 2
+pea.w 80
+jsr.l oamSetGfxOffset
+tsa
+clc
+adc #4
+tas
+lda.w train + 0
+sec
+sbc.w #32
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #7
+pha
+pei (tcc__r0)
+pea.w 0
+jsr.l oamSetXY
+tsa
+clc
+adc #6
+tas
+lda.w train + 0
+sec
+sbc.w #64
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #8
+pha
+pei (tcc__r0)
+pea.w 4
+jsr.l oamSetXY
+tsa
+clc
+adc #6
+tas
+lda.w train + 0
+sec
+sbc.w #96
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #7
+pha
+pei (tcc__r0)
+pea.w 8
+jsr.l oamSetXY
+tsa
+clc
+adc #6
+tas
+__local_2:
+lda.w #0
+sep #$20
+lda.w train + 5
+rep #$20
+sta.b tcc__r0
+ldx #1
+sec
+sbc #1
+tay
+beq +
+dex
++
+stx.b tcc__r5
+txa
+beq +
+brl __local_3
++
+lda.w #0
+sep #$20
+lda.w train + 5
+rep #$20
+sta.b tcc__r0
+ldx #1
+sec
+sbc #3
+tay
+beq +
+dex
++
+stx.b tcc__r5
+txa
+beq +
+__local_3:
+brl __local_4
++
+jmp.w __local_5
+__local_4:
+pea.w 44
+pea.w 12
+jsr.l oamSetGfxOffset
+tsa
+clc
+adc #4
+tas
+pea.w 46
+pea.w 16
+jsr.l oamSetGfxOffset
+tsa
+clc
+adc #4
+tas
+lda.w train + 0
+sec
+sbc.w #128
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #7
+pha
+pei (tcc__r0)
+pea.w 12
+jsr.l oamSetXY
+tsa
+clc
+adc #6
+tas
+lda.w train + 0
+sec
+sbc.w #112
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #7
+pha
+pei (tcc__r0)
+pea.w 16
+jsr.l oamSetXY
+tsa
+clc
+adc #6
+tas
+pea.w 3
+pea.w 80
+jsr.l oamSetGfxOffset
+tsa
+clc
+adc #4
+tas
+lda.w train + 0
+sec
+sbc.w #32
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #8
+pha
+pei (tcc__r0)
+pea.w 0
+jsr.l oamSetXY
+tsa
+clc
+adc #6
+tas
+lda.w train + 0
+sec
+sbc.w #64
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #7
+pha
+pei (tcc__r0)
+pea.w 4
+jsr.l oamSetXY
+tsa
+clc
+adc #6
+tas
+lda.w train + 0
+sec
+sbc.w #96
+sta.b tcc__r0
+lda.w train + 2
+clc
+adc.w #8
+pha
+pei (tcc__r0)
+pea.w 8
+jsr.l oamSetXY
+tsa
+clc
+adc #6
+tas
+__local_5:
+.ifgr __animateTrain_locals 0
+tsa
+clc
+adc #__animateTrain_locals
+tas
+.endif
+rtl
+.ENDS
+
+.SECTION ".animateRodstext_0x6" SUPERFREE
+
+animateRods:
+.ifgr __animateRods_locals 0
+tsa
+sec
+sbc #__animateRods_locals
+tas
+.endif
+lda.w #0
+sep #$20
+lda.w train + 5
+rep #$20
+sta.b tcc__r0
+cmp #0
+beq +
+brl __local_6
++
+lda.w #0
+sep #$20
+lda 3 + __animateRods_locals + 1,s
+rep #$20
+asl a
+asl a
+sta.b tcc__r0
+lda 7 + __animateRods_locals + 1,s
+sta.b tcc__r1
+inc.b tcc__r1
+pei (tcc__r1)
+lda 7 + __animateRods_locals + 1,s
+pha
+pei (tcc__r0)
+jsr.l oamSetXY
+tsa
+clc
+adc #6
+tas
+lda.w #0
+sep #$20
+lda 4 + __animateRods_locals + 1,s
+rep #$20
+asl a
+asl a
+sta.b tcc__r0
+lda 5 + __animateRods_locals + 1,s
+clc
+adc.w #16
+sta.b tcc__r1
+lda 7 + __animateRods_locals + 1,s
+sta.b tcc__r2
+inc.b tcc__r2
+pei (tcc__r2)
+pei (tcc__r1)
+pei (tcc__r0)
+jsr.l oamSetXY
+tsa
+clc
+adc #6
+tas
+__local_6:
+lda.w #0
+sep #$20
+lda.w train + 5
+rep #$20
+sta.b tcc__r0
+cmp #1
+beq +
+brl __local_7
++
+lda.w #0
+sep #$20
+lda 3 + __animateRods_locals + 1,s
+rep #$20
+asl a
+asl a
+sta.b tcc__r0
+lda 5 + __animateRods_locals + 1,s
+dec a
+sta.b tcc__r1
+lda 7 + __animateRods_locals + 1,s
+pha
+pei (tcc__r1)
+pei (tcc__r0)
+jsr.l oamSetXY
+tsa
+clc
+adc #6
+tas
+lda.w #0
+sep #$20
+lda 4 + __animateRods_locals + 1,s
+rep #$20
+asl a
+asl a
+sta.b tcc__r0
+lda 5 + __animateRods_locals + 1,s
+clc
+adc.w #16
+dec a
+sta.b tcc__r1
+lda 7 + __animateRods_locals + 1,s
+pha
+pei (tcc__r1)
+pei (tcc__r0)
+jsr.l oamSetXY
+tsa
+clc
+adc #6
+tas
+__local_7:
+lda.w #0
+sep #$20
+lda.w train + 5
+rep #$20
+sta.b tcc__r0
+cmp #2
+beq +
+brl __local_8
++
+lda.w #0
+sep #$20
+lda 3 + __animateRods_locals + 1,s
+rep #$20
+asl a
+asl a
+sta.b tcc__r0
+lda 7 + __animateRods_locals + 1,s
+sta.b tcc__r1
+dec.b tcc__r1
+pei (tcc__r1)
+lda 7 + __animateRods_locals + 1,s
+pha
+pei (tcc__r0)
+jsr.l oamSetXY
+tsa
+clc
+adc #6
+tas
+lda.w #0
+sep #$20
+lda 4 + __animateRods_locals + 1,s
+rep #$20
+asl a
+asl a
+sta.b tcc__r0
+lda 5 + __animateRods_locals + 1,s
+clc
+adc.w #16
+sta.b tcc__r1
+lda 7 + __animateRods_locals + 1,s
+sta.b tcc__r2
+dec.b tcc__r2
+pei (tcc__r2)
+pei (tcc__r1)
+pei (tcc__r0)
+jsr.l oamSetXY
+tsa
+clc
+adc #6
+tas
+__local_8:
+lda.w #0
+sep #$20
+lda.w train + 5
+rep #$20
+sta.b tcc__r0
+cmp #3
+beq +
+brl __local_9
++
+lda.w #0
+sep #$20
+lda 3 + __animateRods_locals + 1,s
+rep #$20
+asl a
+asl a
+sta.b tcc__r0
+lda 5 + __animateRods_locals + 1,s
+inc a
+sta.b tcc__r1
+lda 7 + __animateRods_locals + 1,s
+pha
+pei (tcc__r1)
+pei (tcc__r0)
+jsr.l oamSetXY
+tsa
+clc
+adc #6
+tas
+lda.w #0
+sep #$20
+lda 4 + __animateRods_locals + 1,s
+rep #$20
+asl a
+asl a
+sta.b tcc__r0
+lda 5 + __animateRods_locals + 1,s
+clc
+adc.w #16
+inc a
+sta.b tcc__r1
+lda 7 + __animateRods_locals + 1,s
+pha
+pei (tcc__r1)
+pei (tcc__r0)
+jsr.l oamSetXY
+tsa
+clc
+adc #6
+tas
+__local_9:
+.ifgr __animateRods_locals 0
+tsa
+clc
+adc #__animateRods_locals
+tas
+.endif
+rtl
+.ENDS
+
+.SECTION ".updateTraintext_0x7" SUPERFREE
+
+updateTrain:
+.ifgr __updateTrain_locals 0
+tsa
+sec
+sbc #__updateTrain_locals
+tas
+.endif
+lda.w #0
+sep #$20
+lda.w train + 4
+rep #$20
+sta.b tcc__r0
+lda.b tcc__r0h
+inc.b tcc__r0
+sep #$20
+lda.b tcc__r0
+sta.w train + 4
+rep #$20
+lda.w train + 0
+sta.b tcc__r0
+sta.b tcc__r1
+lda.b tcc__r0h
+sta.b tcc__r1h
+inc.b tcc__r0
+lda.b tcc__r0
+sta.w train + 0
+lda.w #0
+sep #$20
+lda.w train + 4
+rep #$20
+sta.b tcc__r0
+cmp #8
+beq +
+brl __local_10
++
+lda.w #0
+sep #$20
+sta.w train + 4
+rep #$20
+lda.w #0
+sep #$20
+lda.w train + 5
+rep #$20
+sta.b tcc__r0
+sta.b tcc__r1
+lda.b tcc__r0h
+sta.b tcc__r1h
+inc.b tcc__r0
+sep #$20
+lda.b tcc__r0
+sta.w train + 5
+rep #$20
+__local_10:
+lda.w #0
+sep #$20
+lda.w train + 5
+rep #$20
+sta.b tcc__r0
+cmp #4
+beq +
+brl __local_11
++
+lda.w #0
+sta.b tcc__r0
+sep #$20
+sta.w train + 5
+rep #$20
+__local_11:
+.ifgr __updateTrain_locals 0
+tsa
+clc
+adc #__updateTrain_locals
+tas
+.endif
+rtl
+.ENDS
+.RAMSECTION "ram{WLA_FILENAME}.data" APPENDTO "globram.data"
+
+.ENDS
+
+.SECTION "{WLA_FILENAME}.data" APPENDTO "glob.data"
+
+.ENDS
+
+.SECTION ".rodata" SUPERFREE
+
+.ENDS
+
+.RAMSECTION ".bss" BANK $7e SLOT 2
+train dsb 8
+.ENDS
