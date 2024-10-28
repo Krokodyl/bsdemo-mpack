@@ -47,7 +47,7 @@ convert bitmap ... bg1.bmp
 [97mgfx4snes[0m: manipulate the graphics to fit bits in planes...
 [97mgfx4snes[0m: saving 87 tiles in file [img/bg1.pic]...
 [97mgfx4snes[0m: saving 16 colors palette in file [img/bg1.pal]...
-[97mgfx4snes[0m: processed in 4ms
+[97mgfx4snes[0m: processed in 1ms
 convert bitmap ... bg2.pic
 /d/emulation/pvsneslib/git/pvsneslib/devkitsnes/tools/gfx4snes -s 8 -o 128 -u 128 -e 2 -p -t bmp -m -i img/bg2.bmp
 [97mgfx4snes[0m: (1.0.1) version 20241014
@@ -64,7 +64,7 @@ convert bitmap ... bg2.pic
 [97mgfx4snes[0m: manipulate the graphics to fit bits in planes...
 [97mgfx4snes[0m: saving 256 tiles in file [img/bg2.pic]...
 [97mgfx4snes[0m: saving 128 colors palette in file [img/bg2.pal]...
-[97mgfx4snes[0m: processed in 5ms
+[97mgfx4snes[0m: processed in 2ms
 convert bitmap ... bg3.png
 /d/emulation/pvsneslib/git/pvsneslib/devkitsnes/tools/gfx4snes -s 8 -o 16 -u 4 -e 0 -p -t png -m -g -i img/bg3.png
 [97mgfx4snes[0m: (1.0.1) version 20241014
@@ -81,7 +81,7 @@ convert bitmap ... bg3.png
 [97mgfx4snes[0m: manipulate the graphics to fit bits in planes...
 [97mgfx4snes[0m: saving 129 tiles in file [img/bg3.pic]...
 [97mgfx4snes[0m: saving 16 colors palette in file [img/bg3.pal]...
-[97mgfx4snes[0m: processed in 6ms
+[97mgfx4snes[0m: processed in 1ms
 convert bitmap ... font.png
 /d/emulation/pvsneslib/git/pvsneslib/devkitsnes/tools/gfx4snes -s 8 -o 16 -u 4 -e 1 -t png -m -R -i img/font.png
 [97mgfx4snes[0m: (1.0.1) version 20241014
@@ -126,7 +126,7 @@ convert bitmap ... sea-waves.png
 [97mgfx4snes[0m: manipulate the graphics to fit bits in planes...
 [97mgfx4snes[0m: saving 96 tiles in file [img/sea-waves.pic]...
 [97mgfx4snes[0m: saving 256 colors palette in file [img/sea-waves.pal]...
-[97mgfx4snes[0m: processed in 6ms
+[97mgfx4snes[0m: processed in 1ms
 Compiling to .ps ... bs-demo.c
 /d/emulation/pvsneslib/git/pvsneslib/devkitsnes/bin/816-tcc -I/d/emulation/pvsneslib/git/pvsneslib/pvsneslib/include -I/d/emulation/pvsneslib/git/pvsneslib/devkitsnes/include -I/d/emulation/pvsneslib/projects/bsdemo-mpack -Wall -c bs-demo.c -o bs-demo.ps
 bs-demo.c:30: warning: implicit declaration of function 'drawMenu'
@@ -173,8 +173,8 @@ Building with -x flag: /d/emulation/pvsneslib/git/pvsneslib/devkitsnes/bin/wla-6
 /d/emulation/pvsneslib/git/pvsneslib/devkitsnes/bin/wla-65816 -d -s -x -o src/bstime.obj src/bstime.asm
 Compiling to .ps ... menu.c
 /d/emulation/pvsneslib/git/pvsneslib/devkitsnes/bin/816-tcc -I/d/emulation/pvsneslib/git/pvsneslib/pvsneslib/include -I/d/emulation/pvsneslib/git/pvsneslib/devkitsnes/include -I/d/emulation/pvsneslib/projects/bsdemo-mpack -Wall -c src/menu.c -o src/menu.ps
+src/menu.c:154: warning: implicit declaration of function 'spcReset'
 src/menu.c:155: warning: implicit declaration of function 'bsRebootBios'
-src/menu.c:161: warning: implicit declaration of function 'spcReset'
 src/menu.c:162: warning: implicit declaration of function 'bsReturnToTown'
 cp src/menu.ps src/menu.ps.01.dbg
 Assembling ... menu.ps
@@ -232,10 +232,10 @@ Compiling to .ps ... train.c
 cp src/train.ps src/train.ps.01.dbg
 Assembling ... train.ps
 /d/emulation/pvsneslib/git/pvsneslib/devkitsnes/tools/816-opt src/train.ps >src/train.asp
-optimization pass 1: 325 optimizations performed
-optimization pass 2: 174 optimizations performed
+optimization pass 1: 327 optimizations performed
+optimization pass 2: 175 optimizations performed
 optimization pass 3: 0 optimizations performed
-499 optimizations performed in total
+502 optimizations performed in total
 cp src/train.asp src/train.opt.02.dbg
 Moving constants ... train.ps
 /d/emulation/pvsneslib/git/pvsneslib/devkitsnes/tools/constify src/train.c src/train.asp src/train.asm
@@ -275,33 +275,33 @@ src/bstime.obj: src/bstime.asm:783: _TRY_PUT_LABEL: Label "padUp" was defined mo
 src/bstime.obj: src/bstime.asm:783: _TRY_PUT_LABEL: Label "padDown" was defined more than once.
 src/bstime.obj: src/bstime.asm:783: _TRY_PUT_LABEL: Label "bstime" was defined more than once.
 src/bstime.obj: src/bstime.asm:783: _TRY_PUT_LABEL: Label "SECTIONEND_.bss" was defined more than once.
-src/menu.obj: src/menu.asm:1265: _TRY_PUT_LABEL: Label "music" was defined more than once.
-src/menu.obj: src/menu.asm:1265: _TRY_PUT_LABEL: Label "music" was defined more than once.
-src/menu.obj: src/menu.asm:1265: _TRY_PUT_LABEL: Label "seaFrame" was defined more than once.
-src/menu.obj: src/menu.asm:1265: _TRY_PUT_LABEL: Label "seaFrame" was defined more than once.
-src/menu.obj: src/menu.asm:1265: _TRY_PUT_LABEL: Label "seaState" was defined more than once.
-src/menu.obj: src/menu.asm:1265: _TRY_PUT_LABEL: Label "seaState" was defined more than once.
-src/menu.obj: src/menu.asm:1265: _TRY_PUT_LABEL: Label "selectedOption" was defined more than once.
-src/menu.obj: src/menu.asm:1265: _TRY_PUT_LABEL: Label "selectedOption" was defined more than once.
-src/menu.obj: src/menu.asm:1265: _TRY_PUT_LABEL: Label "showTime" was defined more than once.
-src/menu.obj: src/menu.asm:1265: _TRY_PUT_LABEL: Label "showTime" was defined more than once.
-src/menu.obj: src/menu.asm:1280: _TRY_PUT_LABEL: Label "SECTIONSTART_.bss" was defined more than once.
-src/menu.obj: src/menu.asm:1295: _TRY_PUT_LABEL: Label "bstime" was defined more than once.
-src/menu.obj: src/menu.asm:1295: _TRY_PUT_LABEL: Label "train" was defined more than once.
-src/menu.obj: src/menu.asm:1295: _TRY_PUT_LABEL: Label "pad0" was defined more than once.
-src/menu.obj: src/menu.asm:1295: _TRY_PUT_LABEL: Label "padA" was defined more than once.
-src/menu.obj: src/menu.asm:1295: _TRY_PUT_LABEL: Label "padUp" was defined more than once.
-src/menu.obj: src/menu.asm:1295: _TRY_PUT_LABEL: Label "padDown" was defined more than once.
-src/menu.obj: src/menu.asm:1295: _TRY_PUT_LABEL: Label "SECTIONEND_.bss" was defined more than once.
+src/menu.obj: src/menu.asm:1266: _TRY_PUT_LABEL: Label "music" was defined more than once.
+src/menu.obj: src/menu.asm:1266: _TRY_PUT_LABEL: Label "music" was defined more than once.
+src/menu.obj: src/menu.asm:1266: _TRY_PUT_LABEL: Label "seaFrame" was defined more than once.
+src/menu.obj: src/menu.asm:1266: _TRY_PUT_LABEL: Label "seaFrame" was defined more than once.
+src/menu.obj: src/menu.asm:1266: _TRY_PUT_LABEL: Label "seaState" was defined more than once.
+src/menu.obj: src/menu.asm:1266: _TRY_PUT_LABEL: Label "seaState" was defined more than once.
+src/menu.obj: src/menu.asm:1266: _TRY_PUT_LABEL: Label "selectedOption" was defined more than once.
+src/menu.obj: src/menu.asm:1266: _TRY_PUT_LABEL: Label "selectedOption" was defined more than once.
+src/menu.obj: src/menu.asm:1266: _TRY_PUT_LABEL: Label "showTime" was defined more than once.
+src/menu.obj: src/menu.asm:1266: _TRY_PUT_LABEL: Label "showTime" was defined more than once.
+src/menu.obj: src/menu.asm:1281: _TRY_PUT_LABEL: Label "SECTIONSTART_.bss" was defined more than once.
+src/menu.obj: src/menu.asm:1296: _TRY_PUT_LABEL: Label "bstime" was defined more than once.
+src/menu.obj: src/menu.asm:1296: _TRY_PUT_LABEL: Label "train" was defined more than once.
+src/menu.obj: src/menu.asm:1296: _TRY_PUT_LABEL: Label "pad0" was defined more than once.
+src/menu.obj: src/menu.asm:1296: _TRY_PUT_LABEL: Label "padA" was defined more than once.
+src/menu.obj: src/menu.asm:1296: _TRY_PUT_LABEL: Label "padUp" was defined more than once.
+src/menu.obj: src/menu.asm:1296: _TRY_PUT_LABEL: Label "padDown" was defined more than once.
+src/menu.obj: src/menu.asm:1296: _TRY_PUT_LABEL: Label "SECTIONEND_.bss" was defined more than once.
 src/sea.obj: src/sea.asm:202: _TRY_PUT_LABEL: Label "seaFrame" was defined more than once.
 src/sea.obj: src/sea.asm:202: _TRY_PUT_LABEL: Label "seaFrame" was defined more than once.
 src/sea.obj: src/sea.asm:202: _TRY_PUT_LABEL: Label "seaState" was defined more than once.
 src/sea.obj: src/sea.asm:202: _TRY_PUT_LABEL: Label "seaState" was defined more than once.
 src/sounds.obj: src/sounds.asm:261: _TRY_PUT_LABEL: Label "music" was defined more than once.
 src/sounds.obj: src/sounds.asm:261: _TRY_PUT_LABEL: Label "music" was defined more than once.
-src/train.obj: src/train.asm:1576: _TRY_PUT_LABEL: Label "SECTIONSTART_.bss" was defined more than once.
-src/train.obj: src/train.asm:1578: _TRY_PUT_LABEL: Label "train" was defined more than once.
-src/train.obj: src/train.asm:1578: _TRY_PUT_LABEL: Label "SECTIONEND_.bss" was defined more than once.
+src/train.obj: src/train.asm:1580: _TRY_PUT_LABEL: Label "SECTIONSTART_.bss" was defined more than once.
+src/train.obj: src/train.asm:1582: _TRY_PUT_LABEL: Label "train" was defined more than once.
+src/train.obj: src/train.asm:1582: _TRY_PUT_LABEL: Label "SECTIONEND_.bss" was defined more than once.
 d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: libc_c.asm:7289: _TRY_PUT_LABEL: Label "SECTIONSTART_.bss" was defined more than once.
 d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: libc_c.asm:7291: _TRY_PUT_LABEL: Label "SECTIONEND_.bss" was defined more than once.
 d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libtcc.obj: libtcc.asm:14: _TRY_PUT_LABEL: Label "SECTIONSTART_.libc_mem" was defined more than once.
@@ -337,8 +337,8 @@ DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.o
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: sprites.asm: Section ".spritesa_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: consoles.asm: Section ".consoles7_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: consoles.asm: Section ".consoles5_text" was discarded.
-DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: libc_c.asm: Section ".strtolltext_0xe" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: consoles.asm: Section ".consoles8_text" was discarded.
+DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: libc_c.asm: Section ".strtolltext_0xe" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: sounds.asm: Section ".sound2_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: sprites.asm: Section ".spritesb_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: sprites.asm: Section ".sprites9f_text" was discarded.
@@ -346,8 +346,8 @@ DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.o
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: libc_c.asm: Section ".tccs_libc_c.asm_skip_atoitext_0xf" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: dmas.asm: Section ".dmas2_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: backgrounds.asm: Section ".backgrounds9_text" was discarded.
-DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: backgrounds.asm: Section ".backgrounds6_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: libc_c.asm: Section ".isxdigittext_0x1" was discarded.
+DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: backgrounds.asm: Section ".backgrounds6_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: sprites.asm: Section ".sprites8f_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: videos.asm: Section ".videos91_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: objects.asm: Section ".objects4_text" was discarded.
@@ -363,24 +363,24 @@ DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.o
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: dmas.asm: Section ".dmas3_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: backgrounds.asm: Section ".backgrounds1_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: backgrounds.asm: Section ".backgrounds2_text" was discarded.
-DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: videos.asm: Section ".videos73_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: dmas.asm: Section ".dmas14_text" was discarded.
+DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: videos.asm: Section ".videos73_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: videos.asm: Section ".videos72_text" was discarded.
-DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: videos.asm: Section ".videos71_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: scores.asm: Section ".scores3_text" was discarded.
+DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: videos.asm: Section ".videos71_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: libc.asm: Section ".libc_misc" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: libc_c.asm: Section ".snprintftext_0x12" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: libc_c.asm: Section ".sprintftext_0x14" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: libc_c.asm: Section ".sscanftext_0x16" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: consoles.asm: Section ".consoles1_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: libc_c.asm: Section ".islowertext_0x2" was discarded.
-DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: libc_c.asm: Section ".isdigittext_0x0" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: libc_c.asm: Section ".isprinttext_0x5" was discarded.
+DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: libc_c.asm: Section ".isdigittext_0x0" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: consoles.asm: Section ".consoles10_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: dmas.asm: Section ".dmas7_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: videos.asm: Section ".videos00_text" was discarded.
-DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: videos.asm: Section ".videos000_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: videos.asm: Section ".videos9_text" was discarded.
+DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: videos.asm: Section ".videos000_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: maps.asm: Section ".maps2_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: libc_c.asm: Section ".freetext_0x7" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: consoles.asm: Section ".consoles9_text" was discarded.
@@ -393,14 +393,14 @@ DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.o
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: scores.asm: Section ".scores2_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: scores.asm: Section ".scores1_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: sprites.asm: Section ".sprites5_text" was discarded.
-DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: videos.asm: Section ".videos74_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: libc_c.asm: Section ".vsprintftext_0x13" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: input.asm: Section ".detectmouse_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: backgrounds.asm: Section ".backgrounds3_text" was discarded.
+DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: videos.asm: Section ".videos74_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: input.asm: Section ".padsdetectsuperscope_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: libc_c.asm: Section ".compacttext_0xa" was discarded.
-DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: libc_c.asm: Section ".touppertext_0x3" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: libc.asm: Section ".libc_cstd" was discarded.
+DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: libc_c.asm: Section ".touppertext_0x3" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: consoles.asm: Section ".consoles0_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: dmas.asm: Section ".dmas12_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: scores.asm: Section ".scores0_text" was discarded.
@@ -408,14 +408,15 @@ DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.o
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: sprites.asm: Section ".spritesc_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: input.asm: Section ".pads3_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: sounds.asm: Section ".sound0_text" was discarded.
-DISCARD: src/bstime.obj: src/bstime.asm: Section ".bss" was discarded.
 DISCARD: bs-demo.obj: bs-demo.asm: Section ".bss" was discarded.
+DISCARD: src/bstime.obj: src/bstime.asm: Section ".bss" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: vblank.asm: Section ".waitnvblank_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: vblank.asm: Section ".waitforthreevblanks_text" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: scores.asm: Section ".reg_scores" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: maps.asm: Section ".reg_maps" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: lzsss.asm: Section ".reg_lzss7e" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: libc_c.asm: Section ".rodata" was discarded.
+DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: consoles.asm: Section ".mesen_breakpoint" was discarded.
 DISCARD: d:\emulation\pvsneslib\git\pvsneslib\pvsneslib\lib\LoROM_SlowROM/libc.obj: sounds.asm: Section ".reg_sounds" was discarded.
 src/train.obj: _TRY_PUT_LABEL: Definition "_sizeof_train" was defined more than once.
 src/menu.obj: _TRY_PUT_LABEL: Definition "_sizeof_music" was defined more than once.
@@ -447,15 +448,14 @@ src/sea.obj: _TRY_PUT_LABEL: Definition "_sizeof_seaState" was defined more than
 -------------------------------------------------
 ---                   ROM                     ---
 -------------------------------------------------
-ROM bank 0 (19 bytes (0.06%) free)
-  - Free space at $596a-$596b (2 bytes)
-  - Free space at $7f7d-$7f7f (3 bytes)
-  - Free space at $7fab-$7faf (5 bytes)
+ROM bank 0 (17 bytes (0.05%) free)
+  - Free space at $596b-$596b (1 bytes)
+  - Free space at $7fa9-$7faf (7 bytes)
   - Free space at $7fbf-$7fbf (1 bytes)
   - Free space at $7fe0-$7fe3 (4 bytes)
   - Free space at $7ff0-$7ff3 (4 bytes)
-ROM bank 1 (13336 bytes (40.70%) free)
-  - Free space at $4be8-$7fff (13336 bytes)
+ROM bank 1 (13386 bytes (40.85%) free)
+  - Free space at $4bb6-$7fff (13386 bytes)
 ROM bank 2 (32768 bytes (100.00%) free)
   - Free space at $0000-$7fff (32768 bytes)
 ROM bank 3 (32768 bytes (100.00%) free)
@@ -489,7 +489,7 @@ No headers or footers found.
 -------------------------------------------------
 ---                 SUMMARY                   ---
 -------------------------------------------------
-ROM: 193515 bytes (73.82%) free of total 262144.
+ROM: 193563 bytes (73.84%) free of total 262144.
 RAM: 187709 bytes (95.47%) free of total 196608.
 
 Build finished successfully !
