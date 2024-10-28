@@ -151,7 +151,7 @@ void readInputs() {
 				playSound(SFX_MENU_SELECT);
 				spcFadeModuleVolume(0, 30);
 				setFadeEffect(FADE_OUT);
-				//spcReset();
+				spcReset();
 				bsRebootBios();
 			}
 			if (selectedOption==OPT_EXIT) {
