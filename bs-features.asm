@@ -65,10 +65,6 @@ bsVBlank:
 bsReturnToTown:
   JMP.l (bsReturnToTown+4)
 
-  PHP
-  JSL spcReset    ; reset apu driver
-  PLP
-
   SEP #$20
   LDA #$00
   STA $4200       ; disable NMI
@@ -140,9 +136,6 @@ RTL
 ;
 ; void bsRebootBios();
 bsRebootBios:
-  PHP
-  JSL spcReset
-  PLP
 	SEP #$20
   JSL $105C3C.l
 
