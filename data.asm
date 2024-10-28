@@ -5,10 +5,6 @@
 .DB $31
 .ends
 
-;.SECTION "ReturnToTownData" BANK 0 SLOT 3 ORGA $7F80 FORCE
-;.incbin "bs-features.data"
-;.ENDS
-
 .RAMSECTION ".section7f" BANK $7F SLOT 3
 wram7f		DB
 .ENDS
